@@ -1,42 +1,7 @@
 <div id="booking">
-  <div id="booking-container">
-    @if (option == 'company') {
-    <h3>Foglalás cégeknek</h3>
-    } @else if (option == 'private') {
-    <h3>Foglalás magánszemélyeknek</h3>
-    } @else if (option == 'pet') {
-    <h3>Foglalás kutyásoknak</h3>
-    }
-
-    <div id="progress-bar">
-      <div class="progress-component active">
-        <div class="progress-line"></div>
-        <h4>Adatok</h4>
-      </div>
-      <div class="progress-component">
-        <div class="progress-line"></div>
-        <h4>Utazás</h4>
-      </div>
-      <div class="progress-component">
-        <div class="progress-line"></div>
-        <h4>Áttekintés</h4>
-      </div>
-    </div>
-
-    @if (currentPage == 1) {
-    <app-personal-details-form
-      (formData)="updateFormData($event)"
-      (next)="goToNextPage()"
-    ></app-personal-details-form>
-    } @else if (currentPage == 2 && option == 'company') {
-    <app-company-form
-      (formData)="updateFormData($event)"
-      (previous)="goToPreviousPage()"
-      (submit)="showOverview()"
-      >></app-company-form
-    >
-    } @else if (currentPage == 3) {
-      <app-form-overview [data]="formData"></app-form-overview>
-    }
+  <div class="error">
+    <img src="images/icons/cancel.png" alt="">
+    <h3>Oops!</h3>
+    <span>Sajnos még nem elérhető az online foglalás. :(</span>
   </div>
 </div>
