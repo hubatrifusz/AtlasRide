@@ -11,12 +11,4 @@ export const routes: Routes = [
   { path: '**', redirectTo: '' },
 ];
 
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'top'
-    }),
-  ],
-  exports: [RouterModule],
-})
 export class AppRoutingModule {}
