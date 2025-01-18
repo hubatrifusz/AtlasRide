@@ -1,3 +1,27 @@
+@import "../../../../assets/styles/variables";
+
+
 #private-booking {
-  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .form-container {
+    width: 80%;
+
+    padding: 3rem;
+    margin: 8rem 0 8rem 0;
+
+    background-color: $main-color-s4;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .required {
+        background-color: red;
+      }
+    }
+  }
 }

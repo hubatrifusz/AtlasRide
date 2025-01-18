@@ -13,4 +13,13 @@ export class ApiService {
   getRides(): Observable<any> {
     return this.http.get(`${this.BASE_URL}/api`);
   }
+
+  addRide(data: {
+    lastname: string;
+    firstname: string;
+    email: string;
+    phone: string;
+  }): Observable<any> {
+    return this.http.post(`${this.BASE_URL}/api`, data);
+  }
 }
