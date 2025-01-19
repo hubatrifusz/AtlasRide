@@ -28,4 +28,20 @@ export class ApiService {
   }): Observable<any> {
     return this.http.post(`${this.BASE_URL}/api`, data);
   }
+
+  sendCustomerEmail(data: {
+    to: string;
+    subject: string;
+    html: string;
+  }): Observable<any> {
+    return this.http.post(`${this.BASE_URL}/api/send-email`, data);
+  }
+
+  sendAdminEmail(data: {
+    to: string;
+    subject: string;
+    html: string;
+  }): Observable<any> {
+    return this.http.post(`${this.BASE_URL}/api/send-email`, data);
+  }
 }
