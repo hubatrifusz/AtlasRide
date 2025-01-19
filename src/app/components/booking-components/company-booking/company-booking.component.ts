@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../services/api.service';
 import { FormsModule } from '@angular/forms';
 import { SuccessComponent } from '../../success/success.component';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
-  selector: 'app-private-booking',
+  selector: 'app-company-booking',
   standalone: true,
   imports: [FormsModule, SuccessComponent],
-  templateUrl: './private-booking.component.html',
-  styleUrl: './private-booking.component.scss',
+  templateUrl: './company-booking.component.html',
+  styleUrl: './company-booking.component.scss',
 })
-export class PrivateBookingComponent implements OnInit {
+export class CompanyBookingComponent implements OnInit {
+
   ngOnInit(): void {
     window.scrollTo(0,0);
   }
+
   success: boolean = false;
   show: boolean = true;
 
@@ -27,6 +29,7 @@ export class PrivateBookingComponent implements OnInit {
   return: boolean = false;
   time: string = '';
   comment: string = '';
+  passangerNumber: number = 1;
 
   constructor(private apiService: ApiService) {}
 
@@ -42,6 +45,7 @@ export class PrivateBookingComponent implements OnInit {
       return: this.return,
       time: this.time,
       comment: this.comment,
+      passangerNumber: this.passangerNumber,
     };
 
     if (this.validate(data)) {
@@ -97,6 +101,10 @@ export class PrivateBookingComponent implements OnInit {
 
     const timeElement = document.querySelector(
       '[name="time"]'
+    ) as HTMLInputElement;
+
+    const passengerNumberElement = document.querySelector(
+      '[name="passengerNumber"]'
     ) as HTMLInputElement;
 
     if (!data.lastname) {

@@ -2,7 +2,7 @@
 <app-success></app-success>
 } @if (show == true) {
 
-<div id="private-booking">
+<div id="pet-booking">
   <div class="form-container">
     <form (ngSubmit)="onSubmit()">
       <fieldset>
@@ -90,6 +90,40 @@
             id="return"
             [(ngModel)]="return"
             name="return"
+          />
+        </div>
+
+        <div class="checkboxInput">
+          <label for="box">Ismeri a kutya a boxos utazást?</label>
+          <input
+            type="checkbox"
+            id="box"
+            [(ngModel)]="box"
+            name="box"
+          />
+        </div>
+
+        <div class="passangersNumberInput">
+          <label for="passangerNumber">Utasok száma:</label>
+          <input
+            type="number"
+            id="passangerNumber"
+            [(ngModel)]="passangerNumber"
+            name="passangerNumber"
+            max="6"
+            min="1"
+          />
+        </div>
+
+        <div class="passangersNumberInput">
+          <label for="dogNumber">Kutyák száma:</label>
+          <input
+            type="number"
+            id="dogNumber"
+            [(ngModel)]="dogNumber"
+            name="dogNumber"
+            max="9"
+            min="1"
           />
         </div>
 

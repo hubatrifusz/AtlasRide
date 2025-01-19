@@ -1,6 +1,6 @@
 @import "../../../../assets/styles/variables";
 
-#private-booking {
+#company-booking {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,6 +46,12 @@
           display: flex;
           align-items: center;
         }
+
+        .passangersNumberInput {
+          #passangerNumber {
+            width: 5rem;
+          }
+        }
       }
 
       .commentInput {
@@ -62,7 +68,7 @@
 }
 
 @media (max-width: 1100px) {
-  #private-booking {
+  #company-booking {
     .form-container {
       padding: 15px;
 

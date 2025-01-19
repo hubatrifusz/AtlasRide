@@ -4,16 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { SuccessComponent } from '../../success/success.component';
 
 @Component({
-  selector: 'app-private-booking',
+  selector: 'app-pet-booking',
   standalone: true,
   imports: [FormsModule, SuccessComponent],
-  templateUrl: './private-booking.component.html',
-  styleUrl: './private-booking.component.scss',
+  templateUrl: './pet-booking.component.html',
+  styleUrl: './pet-booking.component.scss',
 })
-export class PrivateBookingComponent implements OnInit {
+export class PetBookingComponent implements OnInit {
+
   ngOnInit(): void {
     window.scrollTo(0,0);
   }
+
   success: boolean = false;
   show: boolean = true;
 
@@ -27,6 +29,9 @@ export class PrivateBookingComponent implements OnInit {
   return: boolean = false;
   time: string = '';
   comment: string = '';
+  passangerNumber: number = 1;
+  dogNumber: number = 1;
+  box: boolean = false;
 
   constructor(private apiService: ApiService) {}
 
@@ -42,6 +47,9 @@ export class PrivateBookingComponent implements OnInit {
       return: this.return,
       time: this.time,
       comment: this.comment,
+      passangerNumber: this.passangerNumber,
+      dogNumber: this.dogNumber,
+      box: this.box,
     };
 
     if (this.validate(data)) {

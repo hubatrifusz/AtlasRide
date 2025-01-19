@@ -19,6 +19,12 @@ export class ApiService {
     firstname: string;
     email: string;
     phone: string;
+    from: string;
+    to: string;
+    baggage: boolean;
+    return: boolean;
+    time: string;
+    comment: string;
   }): Observable<any> {
     return this.http.post(`${this.BASE_URL}/api`, data);
   }

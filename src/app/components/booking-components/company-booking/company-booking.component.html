@@ -2,7 +2,7 @@
 <app-success></app-success>
 } @if (show == true) {
 
-<div id="private-booking">
+<div id="company-booking">
   <div class="form-container">
     <form (ngSubmit)="onSubmit()">
       <fieldset>
@@ -90,6 +90,17 @@
             id="return"
             [(ngModel)]="return"
             name="return"
+          />
+        </div>
+
+        <div class="passangersNumberInput">
+          <label for="passangerNumber">Utasok száma:</label>
+          <input
+            type="number"
+            id="passangerNumber"
+            [(ngModel)]="passangerNumber"
+            name="passangerNumber"
+            min="1"
           />
         </div>
 
