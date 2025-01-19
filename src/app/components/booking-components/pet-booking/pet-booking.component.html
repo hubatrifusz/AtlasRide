@@ -4,6 +4,8 @@
 
 <div id="pet-booking">
   <div class="form-container">
+    <h4>Foglalás kutyásoknak</h4>
+
     <form (ngSubmit)="onSubmit()">
       <fieldset>
         <legend><p>Személyes adatok</p></legend>
@@ -95,12 +97,7 @@
 
         <div class="checkboxInput">
           <label for="box">Ismeri a kutya a boxos utazást?</label>
-          <input
-            type="checkbox"
-            id="box"
-            [(ngModel)]="box"
-            name="box"
-          />
+          <input type="checkbox" id="box" [(ngModel)]="box" name="box" />
         </div>
 
         <div class="passangersNumberInput">
