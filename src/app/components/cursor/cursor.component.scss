@@ -6,7 +6,7 @@
   background-color: white;
   pointer-events: none;
   mix-blend-mode: difference;
-  z-index: 1000;
+  z-index: 10000;
   transform: translate(-50%, -50%);
 
   @media (max-width: 768px) {

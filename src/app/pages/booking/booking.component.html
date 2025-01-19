@@ -1,7 +1,5 @@
 <div id="booking">
-  <div class="error">
-    <img src="images/icons/cancel.png" alt="">
-    <h3>Oops!</h3>
-    <span>Sajnos még nem elérhető az online foglalás. :(</span>
-  </div>
+  @if (currentPage == 'private')  { <app-private-booking></app-private-booking>}
+  @else if (currentPage == 'company') { <app-company-booking></app-company-booking>}
+  @else if (currentPage == 'pet') { <app-pet-booking></app-pet-booking>}
 </div>

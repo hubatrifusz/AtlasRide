@@ -32,17 +32,6 @@
   }
 }
 
-@media (max-width: 1100px) {
-  .about-item {
-    width: unset;
-
-    img {
-      aspect-ratio: 1/2;
-      border-radius: 1rem;
-    }
-  }
-}
-
 .reverse {
   flex-direction: row-reverse;
 
@@ -51,3 +40,26 @@
     margin-left: 2rem;
   }
 }
+
+@media (max-width: 1100px) {
+  .about-item {
+    width: 90vw;
+    flex-direction: column;
+    text-align: center;
+
+    img {
+      width: 90vw;
+      margin-top: 1rem;
+    }
+
+    .description {
+      margin: 0;
+    }
+  }
+
+  .reverse {
+    flex-direction: column;
+  }
+}
+
+

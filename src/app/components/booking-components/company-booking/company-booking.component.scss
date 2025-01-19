@@ -1,0 +1,100 @@
+@import "../../../../assets/styles/variables";
+
+#company-booking {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .form-container {
+    padding: 3rem;
+    margin: 8rem 0 8rem 0;
+
+    background: radial-gradient(
+      ellipse at bottom,
+      $main-color-700 -10%,
+      transparent
+    );
+
+    border-radius: $border-radius;
+    border: solid 1px $main-color-700;
+
+    max-width: 90%;
+
+    h4 {
+      text-align: center;
+      margin: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      fieldset {
+        border-radius: 1rem;
+        border: solid 1px $main-color-600;
+        padding: 1rem;
+        margin: 1rem;
+
+        p {
+          color: $accent-color-200;
+          padding: 5px;
+        }
+
+        .locationInput {
+          input {
+            width: 20rem;
+          }
+        }
+
+        .checkboxInput {
+          display: flex;
+          align-items: center;
+        }
+
+        .passangersNumberInput {
+          #passangerNumber {
+            width: 5rem;
+          }
+        }
+      }
+
+      .commentInput {
+        display: flex;
+        align-items: center;
+      }
+
+      button {
+        width: 10rem;
+        margin: 1rem auto 0 auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  #company-booking {
+    .form-container {
+      padding: 15px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+        fieldset {
+          .locationInput {
+            input {
+              width: 16rem;
+            }
+          }
+
+          .timeInput {
+            input {
+              width: 16rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

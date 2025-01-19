@@ -1,0 +1,139 @@
+@if (success == true) {
+<app-success></app-success>
+} @if (show == true) {
+
+<div id="company-booking">
+  <div class="form-container">
+    <h4>Foglalás cégeknek</h4>
+
+    <form (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><p>Személyes adatok</p></legend>
+        <div class="fullNameInput">
+          <label>Név:</label>
+          <input
+            type="text"
+            id="lastname"
+            [(ngModel)]="lastname"
+            name="lastname"
+            placeholder="Vezetéknév"
+          />
+
+          <input
+            type="text"
+            id="firstname"
+            [(ngModel)]="firstname"
+            name="firstname"
+            placeholder="Keresztnév"
+          />
+        </div>
+
+        <div class="emailInput">
+          <label for="email">E-mail:</label>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="pelda@gmail.com"
+          />
+        </div>
+
+        <div class="phoneInput">
+          <label for="phone">Telefonszám:</label>
+          <input
+            type="text"
+            id="phone"
+            [(ngModel)]="phone"
+            name="phone"
+            placeholder="+36201234567"
+          />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><p>Utazás részletei</p></legend>
+        <div class="locationInput">
+          <label for="from">Indulási hely:</label>
+          <input
+            type="text"
+            id="from"
+            [(ngModel)]="from"
+            name="from"
+            placeholder="1121 Budapest, Királyhágó utca 1."
+          />
+        </div>
+
+        <div class="locationInput">
+          <label for="to">Célállomás:</label>
+          <input
+            type="text"
+            id="to"
+            [(ngModel)]="to"
+            name="to"
+            placeholder="9400 Sopron, Fő tér 5."
+          />
+        </div>
+
+        <div class="checkboxInput">
+          <label for="baggage">Poggyász:</label>
+          <input
+            type="checkbox"
+            id="baggage"
+            [(ngModel)]="baggage"
+            name="baggage"
+          />
+        </div>
+
+        <div class="checkboxInput">
+          <label for="return">Retúr:</label>
+          <input
+            type="checkbox"
+            id="return"
+            [(ngModel)]="return"
+            name="return"
+          />
+        </div>
+
+        <div class="passangersNumberInput">
+          <label for="passangerNumber">Utasok száma:</label>
+          <input
+            type="number"
+            id="passangerNumber"
+            [(ngModel)]="passangerNumber"
+            name="passangerNumber"
+            min="1"
+          />
+        </div>
+
+        <div class="timeInput">
+          <label for="time">Indulás időpontja:</label>
+          <input
+            type="datetime-local"
+            id="time"
+            [(ngModel)]="time"
+            name="time"
+          />
+        </div>
+      </fieldset>
+
+      <div class="commentInput">
+        <label for="comment">Megjegyzés:</label>
+        <textarea
+          type="text"
+          id="comment"
+          [(ngModel)]="comment"
+          name="comment"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="primary-button">Foglalás</button>
+    </form>
+  </div>
+</div>
+
+} @else {
+<div class="loading">
+  <video src="images/icons/loading.webm" autoplay loop></video>
+</div>
+}

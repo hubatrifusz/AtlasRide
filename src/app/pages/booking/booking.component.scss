@@ -1,28 +1,5 @@
 @import "../../../assets/styles/variables";
 
 #booking {
-  .error {
-    width: 100%;
-    height: 95vh;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0.5rem;
-
-    span {
-      font-family: Satoshi;
-      font-size: 1.6rem;
-      text-align: center;
-
-      color: $text-color-s1;
-    }
-
-    img {
-      width: 5rem;
-      margin: 1rem;
-    }
-  }
 }
