@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { FormsModule } from '@angular/forms';
 import { SuccessComponent } from '../../server-responses/success/success.component';
+import { ErrorComponent } from "../../server-responses/error/error.component";
 
 @Component({
   selector: 'app-private-booking',
   standalone: true,
-  imports: [FormsModule, SuccessComponent],
+  imports: [FormsModule, SuccessComponent, ErrorComponent],
   templateUrl: './private-booking.component.html',
   styleUrl: './private-booking.component.scss',
 })
@@ -15,6 +16,7 @@ export class PrivateBookingComponent implements OnInit {
     window.scrollTo(0, 0);
   }
   success: boolean = false;
+  error: boolean = false;
   show: boolean = true;
 
   lastname: string = '';
@@ -52,10 +54,7 @@ export class PrivateBookingComponent implements OnInit {
           this.success = true;
         },
         error: (error) => {
-          if (error.status) {
-            console.error(`Server responded with status: ${error.status}`);
-          }
-          console.error('Error details:', error);
+          this.error = true;
         },
       });
 
