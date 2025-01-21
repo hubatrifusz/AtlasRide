@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { FormsModule } from '@angular/forms';
-import { SuccessComponent } from '../../success/success.component';
+import { SuccessComponent } from '../../server-responses/success/success.component';
 
 @Component({
   selector: 'app-private-booking',

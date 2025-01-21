@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SuccessComponent } from '../../success/success.component';
+import { SuccessComponent } from '../../server-responses/success/success.component';
 import { ApiService } from '../../../services/api.service';
 
 @Component({
