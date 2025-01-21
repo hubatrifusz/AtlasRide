@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SuccessComponent } from '../../server-responses/success/success.component';
 import { ApiService } from '../../../services/api.service';
+import { ErrorComponent } from "../../server-responses/error/error.component";
 
 @Component({
   selector: 'app-company-booking',
   standalone: true,
-  imports: [FormsModule, SuccessComponent],
+  imports: [FormsModule, SuccessComponent, ErrorComponent],
   templateUrl: './company-booking.component.html',
   styleUrl: './company-booking.component.scss',
 })
@@ -16,6 +17,7 @@ export class CompanyBookingComponent implements OnInit {
   }
 
   success: boolean = false;
+  error: boolean = false;
   show: boolean = true;
 
   lastname: string = '';
@@ -51,14 +53,11 @@ export class CompanyBookingComponent implements OnInit {
       data.time = data.time.replace('T', ' '); //Format datetime (2025-01-04T03:30 -> 2025-01-04 03:30)
 
       this.apiService.addRide(data).subscribe({
-        next: (response) => {
+        next: () => {
           this.success = true;
         },
-        error: (error) => {
-          if (error.status) {
-            console.error(`Server responded with status: ${error.status}`);
-          }
-          console.error('Error details:', error);
+        error: () => {
+          this.error = true;
         },
       });
 

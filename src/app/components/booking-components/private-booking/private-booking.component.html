@@ -1,6 +1,11 @@
 @if (success == true) {
 <app-success></app-success>
-} @if (show == true) {
+}
+@else if (error == true) {
+  <app-error></app-error>
+}
+
+@if (show == true) {
 
 <div id="private-booking">
   <div class="form-container">
