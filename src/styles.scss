@@ -215,3 +215,12 @@ input[type="checkbox"] {
     }
   }
 }
+
+.subtext {
+  color: $text-color-s1;
+  font-family: Satoshi;
+  font-size: 0.9rem;
+  text-align: left;
+  margin: 1rem;
+  max-width: 780%;
+}

@@ -1,11 +1,8 @@
 @if (success == true) {
 <app-success></app-success>
-}
-@else if (error == true) {
-  <app-error></app-error>
-}
-
-@if (show == true) {
+} @else if (error == true) {
+<app-error></app-error>
+} @if (show == true) {
 
 <div id="private-booking">
   <div class="form-container">
@@ -121,8 +118,13 @@
         ></textarea>
       </div>
 
-      <button type="submit" class="primary-button">Foglalás</button>
+      <button type="submit" class="primary-button">Foglalás*</button>
     </form>
+    <p class="subtext">
+      *A "Foglalás" gomb megnyomása <b>nem</b> jár fizetési kötelezettséggel.
+      <br />A foglalás elküldése után felvesszük Önnel a kapcsolatot, hogy
+      részletes árajánlatot nyújtsunk.
+    </p>
   </div>
 </div>
 
