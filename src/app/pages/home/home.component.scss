@@ -12,56 +12,79 @@
   );
 
   .heroContent {
-    width: 100%;
-    height: 90vh;
-
-    margin-top: 10vh;
-
     display: flex;
+
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 
-    opacity: 0;
+    padding: 20rem 7rem 7rem 7rem;
 
-    .hero-image-container {
+    @media (max-width: 1100px) {
+      padding: 10rem 1rem 1rem 1rem;
+    }
+
+    .title-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 2;
+
+      h1 {
+        background: linear-gradient(
+          to right,
+          $title-color-100 20%,
+          $title-color-200 60%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        font-size: 7rem;
+        margin: 1.5rem 0 1.5rem 0;
+      }
+
+      span {
+        font-family: Satoshi;
+        color: $text-color;
+        font-size: 1.7rem;
+        letter-spacing: 1px;
+      }
+
+      @media (max-width: 1100px) {
+        h1 {
+          font-size: 4rem;
+          line-height: 100%;
+        }
+
+        span {
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    .hero-background {
+      aspect-ratio: 1/1.2;
+      width: 25%;
+
       position: absolute;
 
-      width: 90%;
-      height: 80vh;
+      animation: background-animation 15s infinite linear;
 
-      overflow: hidden;
+      background: linear-gradient(
+        to left,
+        $accent-color-400,
+        $accent-color-900
+      );
+      filter: blur(40px);
+      opacity: 0.8;
 
-      border-radius: 3rem;
+      z-index: 1;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-
-    #left-container {
-      clip-path: polygon(0% 0%, 68% 0%, 28% 100%, 0% 100%);
-
-      img {
-        height: 80vh;
-        object-position: left center;
-        margin-left: -20vw;
-        opacity: 0.5;
-      }
-    }
-
-    #right-container {
-      clip-path: polygon(72% 0%, 100% 0%, 100% 100%, 32% 100%);
-
-      img {
-        height: 80vh;
-        object-position: right center;
-        margin-right: -110vh;
-        opacity: 0.5;
+      @media (max-width: 1100px) {
+        width: 50%;
       }
     }
   }
@@ -193,5 +216,43 @@
       font-size: 3vh;
       padding: 3vh 0 3vh 0;
     }
+  }
+}
+
+@keyframes background-animation {
+  0% {
+    transform: rotateZ(0deg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2366788f%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23121d2b%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M889 652.5Q864 805 722.5 881T434 912.5Q287 868 218 748t-95.5-257.5q-26.5-137.5 69-249t234-109q138.5 2.5 248 66t175 182.5Q914 500 889 652.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M889 652.5Q864 805 722.5 881T434 912.5Q287 868 218 748t-95.5-257.5q-26.5-137.5 69-249t234-109q138.5 2.5 248 66t175 182.5Q914 500 889 652.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  }
+  25% {
+    transform: rotateZ(90deg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2366788f%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23121d2b%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M889 652q-27 152-171 210t-281.5 22Q299 848 210 743t-97-246q-8-141 93-236t234.5-138.5Q574 79 715 140t171 210.5Q916 500 889 652Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M889 652q-27 152-171 210t-281.5 22Q299 848 210 743t-97-246q-8-141 93-236t234.5-138.5Q574 79 715 140t171 210.5Q916 500 889 652Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  }
+  50% {
+    transform: rotateZ(180deg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2366788f%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23121d2b%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M869.5 659.5q10.5 159.5-142 213t-285 5q-132.5-48.5-254-134T67 500.5q0-157.5 109-265T428 114q143-14 290.5 32.5t144 200q-3.5 153.5 7 313Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M869.5 659.5q10.5 159.5-142 213t-285 5q-132.5-48.5-254-134T67 500.5q0-157.5 109-265T428 114q143-14 290.5 32.5t144 200q-3.5 153.5 7 313Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  }
+  75% {
+    transform: rotateZ(270deg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2366788f%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23121d2b%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M893.5 642.5q-54.5 142.5-187 210T439 880q-135-40-221-143T110 492q-22-142 88.5-233T445 103.5Q581 39 692.5 142T876 372.5q72 127.5 17.5 270Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M893.5 642.5q-54.5 142.5-187 210T439 880q-135-40-221-143T110 492q-22-142 88.5-233T445 103.5Q581 39 692.5 142T876 372.5q72 127.5 17.5 270Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  }
+  100% {
+    transform: rotateZ(360deg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2366788f%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23121d2b%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M889 652.5Q864 805 722.5 881T434 912.5Q287 868 218 748t-95.5-257.5q-26.5-137.5 69-249t234-109q138.5 2.5 248 66t175 182.5Q914 500 889 652.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M889 652.5Q864 805 722.5 881T434 912.5Q287 868 218 748t-95.5-257.5q-26.5-137.5 69-249t234-109q138.5 2.5 248 66t175 182.5Q914 500 889 652.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
   }
 }

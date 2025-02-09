@@ -34,6 +34,26 @@ p {
   color: $text-color-s1;
 }
 
+h1 {
+  font-family: Panchang;
+  font-weight: 400;
+  font-size: 5rem;
+  color: $text-color;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+}
+
+h2 {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7%;
+  margin: 4%;
+  font-family: Panchang;
+  font-weight: 400;
+  color: $main-color;
+  text-transform: capitalize;
+}
+
 h3 {
   font-family: Satoshi;
   font-size: 3rem;

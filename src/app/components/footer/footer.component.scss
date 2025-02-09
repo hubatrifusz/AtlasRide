@@ -31,17 +31,6 @@ footer {
     .content {
       margin: 5%;
 
-      h1 {
-        text-decoration: underline;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 7%;
-        margin: 4%;
-        font-family: Panchang;
-        font-weight: 400;
-        color: $main-color;
-        text-transform: capitalize;
-      }
-
       ul {
         display: flex;
         flex-direction: column;
