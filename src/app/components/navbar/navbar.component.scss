@@ -125,7 +125,7 @@ nav {
     }
   }
 
-  .navbarItem {
+  .navbarItems {
     width: 40%;
     height: 100%;
     display: flex;
@@ -136,6 +136,7 @@ nav {
       text-decoration: none;
       color: $secondary-color;
       transition: all 0.2s ease;
+      margin-left: 1rem;
     }
 
     a:hover {
@@ -234,7 +235,7 @@ nav {
       display: flex;
       margin-right: 1rem;
     }
-    .navbarItem {
+    .navbarItems {
       display: none;
     }
   }

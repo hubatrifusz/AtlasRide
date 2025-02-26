@@ -1,10 +1,16 @@
 <div class="navbar hide">
-  <div id="homeIcon"><a href="/"><img src="images/icons/home.png" alt="" /></a></div>
-  <a href="/"><img id="logo" src="images/SVG/logo_szurke_2.svg" alt="logo" /></a>
-  <div class="navbarItem">
-    <a href="/about">Rólam</a>
-  <button><a href="#reserveCards">Foglalás</a></button>
+  <div id="homeIcon">
+    <a href="/"><img src="images/icons/home.png" alt="" /></a>
   </div>
+
+  <a href="/"><img id="logo" src="images/SVG/logo_szurke_2.svg" alt="logo" /></a>
+
+  <div class="navbarItems">
+    <a href="#prices">Árak</a>
+    <a href="/about">Rólam</a>
+    <button><a href="#reserveCards" style="margin: 0">Foglalás</a></button>
+  </div>
+
   <div class="navIcon" (click)="openNavigation()">
     <span></span>
     <span></span>
@@ -14,6 +20,7 @@
 <nav [class.visible]="showNavbar">
   <ul>
     <li><a href="/">főoldal</a></li>
+    <li><a href="#prices" (click)="openNavigation()">árak</a></li>
     <li><a href="#reserveCards" (click)="openNavigation()">foglalás</a></li>
     <li><a href="/about">rólam</a></li>
   </ul>

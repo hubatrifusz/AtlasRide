@@ -38,6 +38,7 @@ $title-color-200: hsl(214, 30%, 45%);
 
 $border-radius: 2rem;
 
+// Fonts
 @font-face {
   font-family: Panchang;
   src: url("../fonts/Panchang_Complete/Fonts/TTF/Panchang-Variable.ttf")
@@ -49,3 +50,13 @@ $border-radius: 2rem;
   src: url("../fonts/Satoshi_Complete/Fonts/TTF/Satoshi-Variable.ttf")
     format("opentype");
 }
+
+// Font sizes
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-md: 18px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+$font-size-2xl: 32px;
+$font-size-3xl: 48px;

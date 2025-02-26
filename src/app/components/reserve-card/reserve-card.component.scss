@@ -8,12 +8,7 @@
   max-width: calc(20rem + 3px);
   height: calc(30rem + 3px);
   margin: 1rem;
-  background: linear-gradient(
-    55deg,
-    rgb(55, 55, 57) 30%,
-    $secondary-color,
-    rgb(55, 55, 57) 90%
-  );
+  background: linear-gradient(55deg, rgb(55, 55, 57) 30%, $secondary-color, rgb(55, 55, 57) 90%);
   transition: filter 0.3s ease-in-out, opacity 0.5s ease-in-out;
   border-radius: 2rem;
   opacity: 0;
@@ -26,14 +21,7 @@
     padding: 4rem 3rem 4rem 3rem;
     width: 20rem;
     height: 30rem;
-    background: linear-gradient(
-      55deg,
-      rgb(24, 24, 27),
-      rgb(24, 24, 27) 30%,
-      rgb(39, 39, 39),
-      rgb(24, 24, 27),
-      rgb(24, 24, 27) 100%
-    );
+    background: linear-gradient(55deg, rgb(24, 24, 27), rgb(24, 24, 27) 30%, rgb(39, 39, 39), rgb(24, 24, 27), rgb(24, 24, 27) 100%);
     border-radius: inherit;
     transition: all 0.2s ease-in-out;
     box-shadow: 0.5rem 1rem 0.4rem rgba(0, 0, 0, 0.25);
@@ -43,12 +31,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      #title {
 
-        color: $secondary-color;
-        font-family: Satoshi;
-        letter-spacing: 1px;
-        font-weight: 300;
+      #title {
 
         text-transform: uppercase;
         text-decoration: underline;

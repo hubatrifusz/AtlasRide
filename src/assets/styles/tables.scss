@@ -1,0 +1,40 @@
+@import "../styles/variables";
+
+table {
+  border-collapse: collapse;
+
+  background: linear-gradient(to right, $main-color-800, $main-color-900 30%);
+
+  max-width: 90%;
+  tr {
+    th {
+      border: 1px solid $main-color-400;
+      padding: $font-size-xs;
+
+      text-align: left;
+      font-size: $font-size-xl;
+    }
+
+    td {
+      border: 1px solid $main-color-400;
+      padding: $font-size-xs;
+      font-size: $font-size-xl;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  table {
+    tr {
+      th {
+        padding: 0.5rem;
+        font-size: $font-size-lg;
+      }
+
+      td {
+        padding: $font-size-xs;
+        font-size: $font-size-lg;
+      }
+    }
+  }
+}

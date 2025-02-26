@@ -3,7 +3,10 @@
     <div class="title-section">
       <span>Megbízható személyszállítás</span>
       <h1>Atlas Ride</h1>
-      <p>Az Atlas Ride megbízható és személyre szabott privát <br> személyszállítást kínál belföldön és külföldön.</p>
+      <p>
+        Az Atlas Ride megbízható és személyre szabott privát <br />
+        személyszállítást kínál belföldön és külföldön.
+      </p>
     </div>
     <div class="hero-background"></div>
   </div>
@@ -13,52 +16,35 @@
       <app-bulletin
         [imageURL]="'images/icons/security.png'"
         [title]="'Megbízhatóság'"
-        [content]="[
-          'Több százezer kilométer tapasztalat az utakon.',
-          'Folyamatosan karbantartott és szervizelt gépjármű.'
-        ]"
+        [content]="['Több százezer kilométer tapasztalat az utakon.', 'Folyamatosan karbantartott és szervizelt gépjármű.']"
       ></app-bulletin>
       <div class="vertical-line"></div>
       <app-bulletin
         [imageURL]="'images/icons/time.png'"
         [title]="'Pontosság'"
-        [content]="[
-          'Számunkra kiemelten fontos a precíz és pontos időbeosztás.',
-          'Bízza ránk, és garantáljuk a pontos érkezést!'
-        ]"
+        [content]="['Számunkra kiemelten fontos a precíz és pontos időbeosztás.', 'Bízza ránk, és garantáljuk a pontos érkezést!']"
       ></app-bulletin>
       <div class="vertical-line"></div>
       <app-bulletin
         [imageURL]="'images/icons/comfort.png'"
         [title]="'Élmény'"
-        [content]="[
-          'Az Ön kényelme számunkra a legfontosabb.',
-          'Garantáljuk, hogy utazása nyugodt és kellemes lesz!'
-        ]"
+        [content]="['Az Ön kényelme számunkra a legfontosabb.', 'Garantáljuk, hogy utazása nyugodt és kellemes lesz!']"
       ></app-bulletin>
     </div>
   </section>
 </section>
 
-<section id="reserveCards">
-  <h1 appScrollIntoView="in-view" id="caption">Foglalás</h1>
+<section id="reserveCards" appScrollIntoView="in-view">
+  <h1  id="caption">Foglalás</h1>
   <div class="cardContainer">
     <app-reserve-card
       [title]="'Cégeknek'"
-      [description]="[
-        'Rendezvényekhez',
-        'Üzleti partnerek fogadásához',
-        'Munkaebédekhez és vacsorákhoz'
-      ]"
+      [description]="['Rendezvényekhez', 'Üzleti partnerek fogadásához', 'Munkaebédekhez és vacsorákhoz']"
       [routerOption]="['/booking', 'company']"
     ></app-reserve-card>
     <app-reserve-card
       [title]="'Magánszemélyeknek'"
-      [description]="[
-        'Utazna valahová?',
-        'Családi rendezvényre készül, vagy orvoshoz indul?',
-        'Ránk számíthat, minden helyzetben segítünk!'
-      ]"
+      [description]="['Utazna valahová?', 'Családi rendezvényre készül, vagy orvoshoz indul?', 'Ránk számíthat, minden helyzetben segítünk!']"
       [routerOption]="['/booking', 'private']"
     ></app-reserve-card>
     <app-reserve-card
@@ -71,6 +57,28 @@
       [routerOption]="['/booking', 'pet']"
     ></app-reserve-card>
   </div>
+</section>
+
+<section id="prices" appScrollIntoView="in-view">
+  <h1>Árak</h1>
+  <table>
+    <tr>
+      <th>100 km alatti utak esetén</th>
+      <td>350 Ft/km</td>
+    </tr>
+    <tr>
+      <th>100 km feletti utak esetén</th>
+      <td>300 Ft/km</td>
+    </tr>
+    <tr>
+      <th>Alapdíj</th>
+      <td>1500 Ft - 5000 Ft, a kiszállítási távolságtól függően.</td>
+    </tr>
+    <tr>
+      <th>Oda-vissza út esetén</th>
+      <td>50% kedvezmény a visszaút árából</td>
+    </tr>
+  </table>
 </section>
 
 <div id="backgroundDesign"></div>
