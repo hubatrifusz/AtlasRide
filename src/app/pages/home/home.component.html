@@ -35,7 +35,7 @@
 </section>
 
 <section id="reserveCards" appScrollIntoView="in-view">
-  <h1  id="caption">Foglalás</h1>
+  <h1 id="caption">Foglalás</h1>
   <div class="cardContainer">
     <app-reserve-card
       [title]="'Cégeknek'"
@@ -63,12 +63,20 @@
   <h1>Árak</h1>
   <table>
     <tr>
-      <th>100 km alatti utak esetén</th>
+      <th>0km - 50km</th>
       <td>350 Ft/km</td>
     </tr>
     <tr>
-      <th>100 km feletti utak esetén</th>
+      <th>50km - 100km</th>
       <td>300 Ft/km</td>
+    </tr>
+    <tr>
+      <th>100km - 150km</th>
+      <td>250 Ft/km</td>
+    </tr>
+    <tr>
+      <th>150km feletti utak esetén</th>
+      <td>Egyedi ajánlat</td>
     </tr>
     <tr>
       <th>Alapdíj</th>
