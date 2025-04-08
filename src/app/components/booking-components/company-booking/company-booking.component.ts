@@ -189,6 +189,8 @@ export class CompanyBookingComponent implements OnInit {
             <li><strong>Célállomás:</strong> ${data.to}</li>
         </ul>
 
+        <p>Hamarosan válaszolunk egy személyre szabott ajánlattal is az utazás részleteiről.</p>
+
         <p>Bízunk benne, hogy kényelmes és biztonságos utazásban lesz része. Ha bármilyen kérdése van a foglalással kapcsolatban, ne habozzon felvenni velünk a kapcsolatot a <b>info@atlasride.hu</b> email címen vagy a <b>+36 70 600 5522</b> telefonszámon.</p>
 
         <p>Köszönjük, hogy minket választott, és várjuk, hogy segíthessünk az utazásában!</p>
