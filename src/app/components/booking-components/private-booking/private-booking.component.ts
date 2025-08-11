@@ -213,7 +213,7 @@ export class PrivateBookingComponent implements OnInit {
   }) {
     const adminEmailData = {
       to: 'info@atlasride.hu',
-      subject: 'Új foglalás érkezett',
+      subject: `Új foglalás érkezett - ${data.lastname} ${data.firstname}`,
       html: ` <p>Új foglalás érkezett, az alábbi adatokkal:</p>
 
         <p><strong>Foglalás adatai:</strong></p>
