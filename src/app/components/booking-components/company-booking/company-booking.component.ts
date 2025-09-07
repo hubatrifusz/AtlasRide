@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SuccessComponent } from '../../server-responses/success/success.component';
 import { ApiService } from '../../../services/api.service';
-import { ErrorComponent } from "../../server-responses/error/error.component";
+import { ErrorComponent } from '../../server-responses/error/error.component';
 
 @Component({
   selector: 'app-company-booking',
@@ -63,68 +63,44 @@ export class CompanyBookingComponent implements OnInit {
 
       this.show = false;
 
-      this.apiService
-        .sendCustomerEmail(this.makeCustomerEmail(data))
-        .subscribe({
-          next: (response) => {},
-          error: (error) => {
-            if (error.status) {
-              console.error(`Server responded with status: ${error.status}`);
-            }
-            console.error('Error details:', error);
-          },
-        });
+      this.apiService.sendCustomerEmail(this.makeCustomerEmail(data)).subscribe({
+        next: (response) => {},
+        error: (error) => {
+          if (error.status) {
+            console.error(`Server responded with status: ${error.status}`);
+          }
+          console.error('Error details:', error);
+        },
+      });
 
-      this.apiService
-        .sendAdminEmail(this.makeAdminEmail(data))
-        .subscribe({
-          next: (response) => {},
-          error: (error) => {
-            if (error.status) {
-              console.error(`Server responded with status: ${error.status}`);
-            }
-            console.error('Error details:', error);
-          },
-        });
+      this.apiService.sendAdminEmail(this.makeAdminEmail(data)).subscribe({
+        next: (response) => {},
+        error: (error) => {
+          if (error.status) {
+            console.error(`Server responded with status: ${error.status}`);
+          }
+          console.error('Error details:', error);
+        },
+      });
     }
   }
 
-  validate(data: {
-    lastname: string;
-    firstname: string;
-    email: string;
-    phone: string;
-    from: string;
-    to: string;
-    time: string;
-  }) {
+  validate(data: { lastname: string; firstname: string; email: string; phone: string; from: string; to: string; time: string }) {
     let valid = true;
 
-    const lastnameElement = document.querySelector(
-      '[name="lastname"]'
-    ) as HTMLInputElement;
+    const lastnameElement = document.querySelector('[name="lastname"]') as HTMLInputElement;
 
-    const firstnameElement = document.querySelector(
-      '[name="firstname"]'
-    ) as HTMLInputElement;
+    const firstnameElement = document.querySelector('[name="firstname"]') as HTMLInputElement;
 
-    const emailElement = document.querySelector(
-      '[name="email"]'
-    ) as HTMLInputElement;
+    const emailElement = document.querySelector('[name="email"]') as HTMLInputElement;
 
-    const phoneElement = document.querySelector(
-      '[name="phone"]'
-    ) as HTMLInputElement;
+    const phoneElement = document.querySelector('[name="phone"]') as HTMLInputElement;
 
-    const fromElement = document.querySelector(
-      '[name="from"]'
-    ) as HTMLInputElement;
+    const fromElement = document.querySelector('[name="from"]') as HTMLInputElement;
 
     const toElement = document.querySelector('[name="to"]') as HTMLInputElement;
 
-    const timeElement = document.querySelector(
-      '[name="time"]'
-    ) as HTMLInputElement;
+    const timeElement = document.querySelector('[name="time"]') as HTMLInputElement;
 
     if (!data.lastname) {
       lastnameElement.classList.add('required');
@@ -164,14 +140,7 @@ export class CompanyBookingComponent implements OnInit {
     return valid;
   }
 
-  makeCustomerEmail(data: {
-    lastname: string;
-    firstname: string;
-    email: string;
-    from: string;
-    to: string;
-    time: string;
-  }) {
+  makeCustomerEmail(data: { lastname: string; firstname: string; email: string; from: string; to: string; time: string }) {
     const emailData = {
       to: data.email,
       subject: 'Atlas Ride foglalás visszaigazolás',
@@ -219,7 +188,7 @@ export class CompanyBookingComponent implements OnInit {
   }) {
     const adminEmailData = {
       to: 'info@atlasride.hu',
-      subject: 'Új foglalás érkezett',
+      subject: `Új foglalás érkezett - ${data.lastname} ${data.firstname}`,
       html: ` <p>Új foglalás érkezett, az alábbi adatokkal:</p>
 
         <p><strong>Foglalás adatai:</strong></p>

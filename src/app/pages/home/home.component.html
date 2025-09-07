@@ -1,17 +1,18 @@
+<button mat-fab extended color="primary" id="foglalas_button" [routerLink]="'/booking-options'">Árajánlatkérés</button>
+
 <section class="hero">
-  <div class="heroContent" appScrollIntoView="in-view">
+  <div class="heroContent">
     <div class="title-section">
       <span>Megbízható személyszállítás</span>
       <h1>Atlas Ride</h1>
       <p>
-        Az Atlas Ride megbízható és személyre szabott privát <br />
-        személyszállítást kínál belföldön és külföldön.
+        Az Atlas Ride gyors és megbízható repülőtéri transzfereket kínál, <br> személyre szabott privát személyszállítással belföldön és külföldön.
       </p>
     </div>
     <div class="hero-background"></div>
   </div>
   <section class="bulletin">
-    <div class="line" appScrollIntoView="in-view"></div>
+    <div class="line"></div>
     <div id="bulletinContainer">
       <app-bulletin
         [imageURL]="'images/icons/security.png'"
@@ -34,23 +35,7 @@
   </section>
 </section>
 
-<section id="reserveCards" appScrollIntoView="in-view">
-  <h1 id="caption">Foglalás</h1>
-  <div class="cardContainer">
-    <app-reserve-card
-      [title]="'Cégeknek'"
-      [description]="['Rendezvényekhez', 'Üzleti partnerek fogadásához', 'Munkaebédekhez és vacsorákhoz']"
-      [routerOption]="['/booking', 'company']"
-    ></app-reserve-card>
-    <app-reserve-card
-      [title]="'Magánszemélyeknek'"
-      [description]="['Utazna valahová?', 'Családi rendezvényre készül, vagy orvoshoz indul?', 'Ránk számíthat, minden helyzetben segítünk!']"
-      [routerOption]="['/booking', 'private']"
-    ></app-reserve-card>
-  </div>
-</section>
-
-<section id="prices" appScrollIntoView="in-view">
+<section id="prices">
   <h1>Árak</h1>
   <table>
     <tr>

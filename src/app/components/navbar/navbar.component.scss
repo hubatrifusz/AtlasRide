@@ -97,14 +97,14 @@ nav {
 
   height: 6vh;
   width: 50vw;
-  padding: 0 0 0 2rem;
+  padding: 0 2rem 0 2rem;
   margin: 2rem 25vw 0 25vw;
   z-index: 11;
 
   background-color: #0000005e;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(5px);
-  border-radius: 2rem;
+  border-radius: 1rem;
   box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 
   transition: all 0.5s ease-in-out;
@@ -137,32 +137,12 @@ nav {
       color: $secondary-color;
       transition: all 0.2s ease;
       margin-left: 1rem;
+
+      font-weight: 300;
     }
 
     a:hover {
       color: $text-color-s1;
-    }
-
-    button {
-      height: 100%;
-      aspect-ratio: 1/0.4;
-      margin-left: 1rem;
-
-      border-radius: 2rem;
-      border: none;
-      box-shadow: 0rem 0.5rem 0.4rem rgba(0, 0, 0, 0.25);
-
-      background-color: $accent-color;
-      color: $secondary-color;
-
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: inherit;
-      transition: filter 0.2s ease;
-    }
-
-    button:hover {
-      filter: brightness(1.3);
     }
   }
 
