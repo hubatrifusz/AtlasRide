@@ -1,51 +1,27 @@
 <script setup lang="ts">
-import { DateFormatter, getLocalTimeZone, today } from '@internationalized/date';
-import { vMaska } from 'maska/vue';
 import { CalendarDate } from '@internationalized/date';
+import { vMaska } from 'maska/vue';
 import * as v from 'valibot';
-
-const minDate = today(getLocalTimeZone());
-
-const TravelInfoSchema = v.object({
-  departureLocation: v.pipe(v.string(), v.nonEmpty('Indulási hely kötelező')),
-  destinationLocation: v.pipe(v.string(), v.nonEmpty('Úti cél kötelező')),
-  departureDate: v.pipe(v.string(), v.nonEmpty('Indulás dátuma kötelező')),
-  departureTime: v.pipe(v.string(), v.nonEmpty('Indulás ideje kötelező')),
-  passengers: v.pipe(v.string(), v.nonEmpty('Utasok száma kötelező')),
-  return: v.boolean(),
-  returnDate: v.pipe(v.string(), v.nonEmpty('Vissza dátuma kötelező')),
-  returnTime: v.string(),
-  comment: v.string(),
-});
+import { TravelInfoSchema } from '~/schemas/booking';
 
 type TravelInfoData = v.InferOutput<typeof TravelInfoSchema>;
-
-const departureDate = new CalendarDate(2000, 1, 1);
-const returnDate = new CalendarDate(2000, 1, 1);
 
 const travelInfoForm = ref<TravelInfoData>({
   departureLocation: '',
   destinationLocation: '',
-  departureDate: departureDate.toString(),
+  departureDate: '',
   departureTime: '',
   passengers: '',
   comment: '',
   return: false,
-  returnDate: returnDate.toString(),
+  returnDate: '',
   returnTime: '',
-});
-
-const FlightInfoSchema = v.object({
-  flightNumber: v.string(),
-  takeoffTime: v.string(),
-});
-
-type FlightInfoData = v.InferOutput<typeof FlightInfoSchema>;
-
-const flightInfoForm = ref<FlightInfoData>({
   flightNumber: '',
   takeoffTime: '',
 });
+
+const minDate = new CalendarDate(2023, 9, 1);
+const date = new CalendarDate(2024, 9, 1);
 
 function beforeEnter(el: Element) {
   (el as HTMLElement).style.height = '0';
@@ -91,7 +67,7 @@ function leave(el: Element) {
         travelInfoForm.departureDate ? travelInfoForm.departureDate : 'Válassza ki az indulás napját'
       }}</UButton>
       <template #content>
-        <UCalendar v-model="departureDate" :year-controls="false" size="lg" :min-value="minDate" locale="hu" />
+        <UCalendar v-model="date" :year-controls="false" size="lg" :min-value="minDate" locale="hu" />
       </template>
     </UPopover>
 
@@ -108,13 +84,13 @@ function leave(el: Element) {
       <USeparator class="md:w-1/2 w-full my-8" />
 
       <UFormField class="md:w-1/2 w-full" name="flightNumber">
-        <UInput v-model="flightInfoForm.flightNumber" trailing-icon="i-lucide-hash" label="Repülőgép járatszáma" placeholder="Repülőgép járatszáma" size="xl" class="w-full" />
+        <UInput v-model="travelInfoForm.flightNumber" trailing-icon="i-lucide-hash" label="Repülőgép járatszáma" placeholder="Repülőgép járatszáma" size="xl" class="w-full" />
       </UFormField>
 
       <UFormField class="md:w-1/2 w-full" name="takeoffTime">
         <UInput
           v-maska="'##:##'"
-          v-model="flightInfoForm.takeoffTime"
+          v-model="travelInfoForm.takeoffTime"
           trailing-icon="i-lucide-plane-takeoff"
           label="Repülőgép száma"
           placeholder="Repülőgép felszállásának ideje"
@@ -139,10 +115,10 @@ function leave(el: Element) {
           }"
         >
           <UButton size="xl" icon="i-lucide-calendar" class="text-text-primary md:w-1/2 w-full" color="secondary">
-            {{ travelInfoForm.returnDate ? returnDate : 'Válassza ki a visszaút dátumát' }}
+            {{ travelInfoForm.returnDate ? travelInfoForm.returnDate : 'Válassza ki a visszaút dátumát' }}
           </UButton>
           <template #content>
-            <UCalendar v-model="returnDate" :year-controls="false" size="lg" :min-value="minDate" locale="hu" />
+            <UCalendar :year-controls="false" size="lg" :min-value="minDate" locale="hu" />
           </template>
         </UPopover>
 

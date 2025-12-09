@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 const emit = defineEmits(['selectType']);
 
 const stepForm = ref({
@@ -13,14 +15,14 @@ function selectType(type: string) {
 
 <template>
   <div class="w-full flex md:flex-row flex-col items-center justify-center gap-10 md:p-12 p-18 md:px-72">
-    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" @click="selectType('céges')">
+    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" id="ceges" @click="selectType('céges')">
       <div class="card">Céges</div>
     </div>
-    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" @click="selectType('reptéri')">
+    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" id="repteri" @click="selectType('reptéri')">
       <div class="card">Reptéri</div>
     </div>
-    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" @click="selectType('egyéb')">
-      <div class="card">Egyéb</div>
+    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" id="egyeni" @click="selectType('egyéb')">
+      <div class="card">Egyéni</div>
     </div>
   </div>
 </template>

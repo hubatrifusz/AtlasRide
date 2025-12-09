@@ -1,11 +1,12 @@
 import tailwindcss from '@tailwindcss/vite';
+import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
   ssr: false,
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  modules: ['@nuxt/ui', '@nuxt/fonts', '@nuxt/test-utils/module', 'nuxt-gtag'],
+  modules: ['@nuxt/ui', '@nuxt/fonts', 'nuxt-gtag'],
   css: ['~/assets/css/main.css'],
 
   gtag: {
