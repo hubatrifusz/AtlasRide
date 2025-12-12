@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useBookingForm } from '~/composables/useBookingForm';
 
+const { clearForm } = useBookingForm();
 const emit = defineEmits(['selectType']);
 
 const stepForm = ref({
@@ -11,17 +13,21 @@ function selectType(type: string) {
   stepForm.value.rideType = type;
   emit('selectType', type);
 }
+
+onMounted(() => {
+  clearForm();
+});
 </script>
 
 <template>
-  <div class="w-full flex md:flex-row flex-col items-center justify-center gap-10 md:p-12 p-18 md:px-72">
-    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" id="ceges" @click="selectType('céges')">
+  <div class="w-7/10 flex lg:flex-row flex-col items-center justify-center gap-10 py-12">
+    <div class="card_border flex-1 lg:aspect-3/4 w-full aspect-2/1" id="ceges" @click="selectType('céges')">
       <div class="card">Céges</div>
     </div>
-    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" id="repteri" @click="selectType('reptéri')">
+    <div class="card_border flex-1 lg:aspect-3/4 w-full aspect-2/1" id="repteri" @click="selectType('reptéri')">
       <div class="card">Reptéri</div>
     </div>
-    <div class="card_border flex-1 md:aspect-[3/4] w-full aspect-[2/1]" id="egyeni" @click="selectType('egyéb')">
+    <div class="card_border flex-1 lg:aspect-3/4 w-full aspect-2/1" id="egyeni" @click="selectType('egyéb')">
       <div class="card">Egyéni</div>
     </div>
   </div>

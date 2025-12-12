@@ -1,21 +1,14 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import { useBookingForm } from '~/composables/useBookingForm';
+import { ref, watchEffect, onMounted } from 'vue';
+import { useBookingForm, formData } from '~/composables/useBookingForm';
 import * as v from 'valibot';
+import { CorporateBookingSchema } from '~/schemas/booking';
 
-const { isFormValid } = useBookingForm();
-
-const CorporateBookingSchema = v.object({
-  companyName: v.pipe(v.string(), v.nonEmpty('Cégnév kötelező')),
-  name: v.pipe(v.string(), v.nonEmpty('Kapcsolattartó neve kötelező')),
-  email: v.pipe(v.string(), v.nonEmpty('Email kötelező'), v.email('Érvénytelen email')),
-  phone: v.pipe(v.string(), v.nonEmpty('Telefonszám kötelező')),
-  homeAddress: v.pipe(v.string(), v.nonEmpty('Telephely kötelező')),
-});
+const { isFormValid, nextStep } = useBookingForm();
 
 type CorporateBookingData = v.InferOutput<typeof CorporateBookingSchema>;
 
-const CorporateBookingForm = ref<CorporateBookingData>({
+const corporateBookingForm = ref<CorporateBookingData>({
   companyName: '',
   name: '',
   email: '',
@@ -23,28 +16,48 @@ const CorporateBookingForm = ref<CorporateBookingData>({
   homeAddress: '',
 });
 
+onMounted(() => {
+  corporateBookingForm.value.companyName = formData.value.companyName;
+  corporateBookingForm.value.name = formData.value.name;
+  corporateBookingForm.value.email = formData.value.email;
+  corporateBookingForm.value.phone = formData.value.phone;
+  corporateBookingForm.value.homeAddress = formData.value.homeAddress;
+});
+
 watchEffect(() => {
-  const result = v.safeParse(CorporateBookingSchema, CorporateBookingForm.value); 
+  const result = v.safeParse(CorporateBookingSchema, corporateBookingForm.value);
   isFormValid.value = result.success;
 });
+
+function saveForm() {
+  formData.value.companyName = corporateBookingForm.value.companyName;
+  formData.value.name = corporateBookingForm.value.name;
+  formData.value.email = corporateBookingForm.value.email;
+  formData.value.phone = corporateBookingForm.value.phone;
+  formData.value.homeAddress = corporateBookingForm.value.homeAddress;
+
+  nextStep();
+}
 </script>
 
 <template>
-  <UForm :schema="CorporateBookingSchema" :state="CorporateBookingForm" class="flex flex-col gap-4 w-full justify-center items-center px-4">
+  <UForm :schema="CorporateBookingSchema" :state="corporateBookingForm" class="flex flex-col gap-4 w-full justify-center items-center px-4">
     <UFormField class="md:w-1/2 w-full" name="companyName">
-      <UInput v-model="CorporateBookingForm.companyName" trailing-icon="i-lucide-building-2" label="Cégnév" placeholder="Cégnév" size="xl" class="w-full" />
+      <UInput v-model="corporateBookingForm.companyName" trailing-icon="i-lucide-building-2" label="Cégnév" placeholder="Cégnév" size="xl" class="w-full" />
     </UFormField>
     <UFormField class="md:w-1/2 w-full" name="name">
-      <UInput v-model="CorporateBookingForm.name" trailing-icon="i-lucide-user" label="Kapcsolattartó neve" placeholder="Kapcsolattartó neve" size="xl" class="w-full" />
+      <UInput v-model="corporateBookingForm.name" trailing-icon="i-lucide-user" label="Kapcsolattartó neve" placeholder="Kapcsolattartó neve" size="xl" class="w-full" />
     </UFormField>
     <UFormField class="md:w-1/2 w-full" name="email">
-      <UInput v-model="CorporateBookingForm.email" trailing-icon="i-lucide-at-sign" label="Email" placeholder="Email" size="xl" class="w-full" />
+      <UInput v-model="corporateBookingForm.email" trailing-icon="i-lucide-at-sign" label="Email" placeholder="Email" size="xl" class="w-full" />
     </UFormField>
     <UFormField class="md:w-1/2 w-full" name="phone">
-      <UInput v-model="CorporateBookingForm.phone" trailing-icon="i-lucide-phone" label="Telefonszám" placeholder="Telefonszám" size="xl" class="w-full" />
+      <UInput v-model="corporateBookingForm.phone" trailing-icon="i-lucide-phone" label="Telefonszám" placeholder="Telefonszám" size="xl" class="w-full" />
     </UFormField>
     <UFormField class="md:w-1/2 w-full" name="homeAddress">
-      <UInput v-model="CorporateBookingForm.homeAddress" trailing-icon="i-lucide-map-pin-house" label="Telephely" placeholder="Telephely" size="xl" class="w-full" />
+      <UInput v-model="corporateBookingForm.homeAddress" trailing-icon="i-lucide-map-pin-house" label="Telephely" placeholder="Telephely" size="xl" class="w-full" />
     </UFormField>
   </UForm>
+
+  <BookingActionButtons @save-form="saveForm" />
 </template>

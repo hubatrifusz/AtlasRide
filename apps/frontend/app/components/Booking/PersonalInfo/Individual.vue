@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import { useBookingForm } from '~/composables/useBookingForm';
-import { IndividualBookingSchema } from '~/schemas/booking'
+import { ref, watchEffect, onMounted } from 'vue';
+import { useBookingForm, formData } from '~/composables/useBookingForm';
+import { IndividualBookingSchema } from '~/schemas/booking';
 import * as v from 'valibot';
 
-const { isFormValid } = useBookingForm();
+const { isFormValid, nextStep } = useBookingForm();
 
 type IndividualBookingData = v.InferOutput<typeof IndividualBookingSchema>;
 
@@ -14,10 +14,24 @@ const individualBookingForm = ref<IndividualBookingData>({
   phone: '',
 });
 
+onMounted(() => {
+  individualBookingForm.value.name = formData.value.name;
+  individualBookingForm.value.email = formData.value.email;
+  individualBookingForm.value.phone = formData.value.phone;
+});
+
 watchEffect(() => {
-  const result = v.safeParse(IndividualBookingSchema, individualBookingForm.value); 
+  const result = v.safeParse(IndividualBookingSchema, individualBookingForm.value);
   isFormValid.value = result.success;
 });
+
+function saveForm() {
+  formData.value.name = individualBookingForm.value.name;
+  formData.value.email = individualBookingForm.value.email;
+  formData.value.phone = individualBookingForm.value.phone;
+
+  nextStep();
+}
 </script>
 
 <template>
@@ -32,6 +46,8 @@ watchEffect(() => {
       <UInput v-model="individualBookingForm.phone" trailing-icon="i-lucide-phone" label="Telefonszám" placeholder="Telefonszám" size="xl" class="w-full" />
     </UFormField>
   </UForm>
+
+  <BookingActionButtons @save-form="saveForm" />
 </template>
 
 <style></style>

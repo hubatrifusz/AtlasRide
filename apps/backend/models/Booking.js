@@ -7,6 +7,7 @@ const BookingSchema = new mongoose.Schema({
   },
   name: {
     type: String,
+    required: true
   },
   companyName: {
     type: String,
@@ -30,7 +31,7 @@ const BookingSchema = new mongoose.Schema({
     required: true,
   },
   departureDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   departureTime: {
@@ -54,7 +55,7 @@ const BookingSchema = new mongoose.Schema({
     type: String,
   },
   returnDate: {
-    type: Date,
+    type: String,
   },
   returnTime: {
     type: String,

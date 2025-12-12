@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
     const savedBooking = await newBooking.save();
 
     // Send emails to customer and admin
-    await sendBookingEmail(savedBooking);
+    // await sendBookingEmail(savedBooking);
 
     res.status(201).json(savedBooking);
   } catch (err) {

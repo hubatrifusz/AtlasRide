@@ -1,26 +1,34 @@
-import type { CalendarDate } from '@internationalized/date';
 import { ref } from 'vue';
 
-
-const formData = ref({
+const getInitialFormData = () => ({
+  rideType: '',
   name: '',
   companyName: '',
   email: '',
   phone: '',
+  homeAddress: '',
   passengers: '',
+  departureLocation: '',
+  departureDate: '',
   departureTime: '',
-  takeoffTime: '',
-  flightNumber: '',
+  destinationLocation: '',
+  takeoffTime: '' as string | undefined,
+  flightNumber: '' as string | undefined,
   return: false as boolean,
-  returnLocation: '',
-  returnDate: null as CalendarDate | null,
-  returnTime: '',
+  returnDate: '' as string | undefined,
+  returnTime: '' as string | undefined,
   comment: '',
 });
 
-const currentStep = ref<number>(0);
+export const formData = ref(getInitialFormData());
 
+const currentStep = ref<number>(0);
+export const rideType = ref<string>('');
 const isFormValid = ref<boolean>(false);
+
+watch(rideType, (newVal) => {
+  formData.value.rideType = newVal;
+});
 
 export function useBookingForm() {
   function previousStep() {
@@ -36,10 +44,20 @@ export function useBookingForm() {
     isFormValid.value = false;
   }
 
+  function clearForm() {
+    formData.value = getInitialFormData();
+  }
+
+  function reset() {
+    clearForm();
+    currentStep.value = 0;
+  }
+
   return {
-    formData,
     previousStep,
     nextStep,
+    clearForm,
+    reset,
     currentStep,
     isFormValid,
   };

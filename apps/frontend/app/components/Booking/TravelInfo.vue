@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { CalendarDate } from '@internationalized/date';
+import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
 import { vMaska } from 'maska/vue';
 import * as v from 'valibot';
 import { TravelInfoSchema } from '~/schemas/booking';
+import { ref, watch, shallowRef, watchEffect, onMounted } from 'vue';
+import { useBookingForm, formData, rideType } from '~/composables/useBookingForm';
+
+const { isFormValid, nextStep } = useBookingForm();
 
 type TravelInfoData = v.InferOutput<typeof TravelInfoSchema>;
 
@@ -20,8 +24,60 @@ const travelInfoForm = ref<TravelInfoData>({
   takeoffTime: '',
 });
 
-const minDate = new CalendarDate(2023, 9, 1);
-const date = new CalendarDate(2024, 9, 1);
+onMounted(() => {
+  travelInfoForm.value.departureLocation = formData.value.departureLocation;
+  travelInfoForm.value.destinationLocation = formData.value.destinationLocation;
+  travelInfoForm.value.departureDate = formData.value.departureDate;
+  travelInfoForm.value.departureTime = formData.value.departureTime;
+  travelInfoForm.value.passengers = formData.value.passengers;
+  travelInfoForm.value.comment = formData.value.comment;
+  travelInfoForm.value.return = formData.value.return;
+  if (formData.value.returnDate) {
+    travelInfoForm.value.returnDate = formData.value.returnDate.toString();
+  } else {
+    travelInfoForm.value.returnDate = '';
+  }
+  travelInfoForm.value.returnTime = formData.value.returnTime;
+  travelInfoForm.value.flightNumber = formData.value.flightNumber;
+  travelInfoForm.value.takeoffTime = formData.value.takeoffTime;
+});
+
+const minDate: CalendarDate = today(getLocalTimeZone());
+const departureDateCD = shallowRef<CalendarDate>(today(getLocalTimeZone()));
+const returnDateDC = shallowRef<CalendarDate>(today(getLocalTimeZone()));
+
+watch(departureDateCD, (newVal) => {
+  if (newVal instanceof CalendarDate) {
+    travelInfoForm.value.departureDate = newVal.toString();
+  }
+});
+
+watch(returnDateDC, (newVal) => {
+  if (newVal instanceof CalendarDate) {
+    travelInfoForm.value.returnDate = newVal.toString();
+  }
+});
+
+watchEffect(() => {
+  const result = v.safeParse(TravelInfoSchema, travelInfoForm.value);
+  isFormValid.value = result.success;
+});
+
+function saveForm() {
+  formData.value.departureLocation = travelInfoForm.value.departureLocation;
+  formData.value.destinationLocation = travelInfoForm.value.destinationLocation;
+  formData.value.departureDate = travelInfoForm.value.departureDate;
+  formData.value.departureTime = travelInfoForm.value.departureTime;
+  formData.value.passengers = travelInfoForm.value.passengers;
+  formData.value.comment = travelInfoForm.value.comment;
+  formData.value.return = travelInfoForm.value.return;
+  formData.value.returnDate = travelInfoForm.value.returnDate;
+  formData.value.returnTime = travelInfoForm.value.returnTime;
+  formData.value.flightNumber = travelInfoForm.value.flightNumber;
+  formData.value.takeoffTime = travelInfoForm.value.takeoffTime;
+
+  nextStep();
+}
 
 function beforeEnter(el: Element) {
   (el as HTMLElement).style.height = '0';
@@ -67,7 +123,7 @@ function leave(el: Element) {
         travelInfoForm.departureDate ? travelInfoForm.departureDate : 'Válassza ki az indulás napját'
       }}</UButton>
       <template #content>
-        <UCalendar v-model="date" :year-controls="false" size="lg" :min-value="minDate" locale="hu" />
+        <UCalendar v-model="departureDateCD" :year-controls="false" size="lg" :min-value="minDate" locale="hu" />
       </template>
     </UPopover>
 
@@ -80,7 +136,7 @@ function leave(el: Element) {
     </UFormField>
 
     <!-- Repteri esetén -->
-    <div class="w-full flex flex-col items-center gap-2">
+    <div v-if="rideType == 'reptéri'" class="w-full flex flex-col items-center gap-2">
       <USeparator class="md:w-1/2 w-full my-8" />
 
       <UFormField class="md:w-1/2 w-full" name="flightNumber">
@@ -101,7 +157,7 @@ function leave(el: Element) {
     </div>
 
     <UFormField class="md:w-1/2 w-full" name="return">
-      <USwitch v-model="travelInfoForm.return" label="Retúr" size="xl" @change="console.log('Retúr:', travelInfoForm.return)" />
+      <USwitch v-model="travelInfoForm.return" label="Retúr" size="xl" />
     </UFormField>
 
     <!-- Retúr esetén -->
@@ -118,7 +174,7 @@ function leave(el: Element) {
             {{ travelInfoForm.returnDate ? travelInfoForm.returnDate : 'Válassza ki a visszaút dátumát' }}
           </UButton>
           <template #content>
-            <UCalendar :year-controls="false" size="lg" :min-value="minDate" locale="hu" />
+            <UCalendar v-model="returnDateDC" :year-controls="false" size="lg" :min-value="minDate" locale="hu" />
           </template>
         </UPopover>
 
@@ -138,4 +194,6 @@ function leave(el: Element) {
       <UTextarea v-model="travelInfoForm.comment" size="xl" placeholder="Megjegyzés" class="w-full" />
     </div>
   </UForm>
+
+  <BookingActionButtons @save-form="saveForm" />
 </template>

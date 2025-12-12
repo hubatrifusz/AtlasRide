@@ -1,82 +1,42 @@
 <script setup lang="ts">
-const props = defineProps<{ form: any }>();
-
-
+import { formData, rideType } from '~/composables/useBookingForm';
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 w-full justify-center items-center">
-    <div class="text-text-secondary text-lg">
-      <div v-if="props.form.rideType != 'céges'">
-        Teljes név: <span>{{ props.form.name }}</span>
-      </div>
+  <div class="w-screen flex flex-col items-center gap-8 p-4">
+    <fieldset class="border border-main-500 rounded-md p-8 md:w-1/2 w-full flex flex-col">
+      <legend class="px-2 text-main-200">Személyes adatok</legend>
+      <span>{{ formData.rideType }}</span>
+      <span v-if="formData.companyName"><UIcon name="i-lucide-building-2" class="bg-main-300" /> {{ formData.companyName }}</span>
+      <span v-if="formData.name"><UIcon name="i-lucide-user" class="bg-main-300" /> {{ formData.name }}</span>
+      <span v-if="formData.email"><UIcon name="i-lucide-mail" class="bg-main-300" /> {{ formData.email }}</span>
+      <span v-if="formData.phone"><UIcon name="i-lucide-phone" class="bg-main-300" /> {{ formData.phone }}</span>
+      <span v-if="formData.homeAddress"><UIcon name="i-lucide-house" class="bg-main-300" /> {{ formData.homeAddress }}</span>
+    </fieldset>
 
-      <div v-else>
-        <div>
-          Cégnév: <span>{{ props.form.companyName }}</span>
-        </div>
+    <fieldset class="border border-main-500 rounded-md p-8 md:w-1/2 w-full flex flex-col">
+      <legend class="px-2 text-main-200">Utazás részletei</legend>
+      <span v-if="formData.passengers"><UIcon name="i-lucide-users" class="bg-main-300" /> {{ formData.passengers }}</span>
+      <span v-if="formData.departureLocation"
+        ><i class="text-main-300">Indulás:</i> {{ formData.departureLocation }}, {{ formData.departureDate }}, {{ formData.departureTime }}</span
+      >
+      <span v-if="formData.destinationLocation"><i class="text-main-300">Érkezés:</i> {{ formData.destinationLocation }}</span>
+      <span v-if="formData.return"><i class="text-main-300">Retúr:</i> {{ formData.returnDate }}, {{ formData.returnTime }}</span>
+      <span v-if="formData.comment"><UIcon name="i-lucide-message-square" class="bg-main-300" /> {{ formData.comment }}</span>
+    </fieldset>
 
-        <div>
-          Kapcsolattartó neve: <span>{{ props.form.name }}</span>
-        </div>
+    <fieldset v-if="rideType == 'reptéri' && (formData.flightNumber || formData.takeoffTime)" class="border border-main-500 rounded-md p-8 md:w-1/2 w-full flex flex-col">
+      <legend class="px-2 text-main-200">Repülőút részletei</legend>
+      <span v-if="formData.flightNumber"><UIcon name="i-lucide-plane" class="bg-main-300" /> {{ formData.flightNumber }}</span>
+      <span v-if="formData.takeoffTime"><UIcon name="i-lucide-clock" class="bg-main-300" /> {{ formData.takeoffTime }}</span>
+    </fieldset>
 
-        <div>
-          Telephely: <span>{{ props.form.homeAddress }}</span>
-        </div>
-      </div>
-
-      <div>
-        E-mail cím: <span>{{ props.form.email }}</span>
-      </div>
-
-      <div>
-        Telefonszám: <span>{{ props.form.phone }}</span>
-      </div>
-
-      <USeparator class="w-full my-4" />
-
-      <div>
-        Úti cél: <span>{{ props.form.destinationLocation }}</span>
-      </div>
-
-      <div>
-        Indulási hely: <span>{{ props.form.departureLocation }}</span>
-      </div>
-
-      <div>
-        Indulás: <span>{{ props.form.departureDate }}, {{ props.form.departureTime }}</span>
-      </div>
-
-      <div>
-        Utasok száma: <span>{{ props.form.passengers }}</span>
-      </div>
-
-      <div v-if="props.form.return">
-        Visszaút: <span>{{ props.form.returnDate }}, {{ props.form.returnTime }}</span>
-      </div>
-
-      <div v-if="props.form.rideType == 'reptéri'">
-        <USeparator class="w-full my-4" />
-
-        <div>
-          Repülőjárat száma: <span>{{ props.form.flightNumber }}</span>
-        </div>
-
-        <div>
-          Tervezett felszállási idő: <span>{{ props.form.takeoffTime }}</span>
-        </div>
-      </div>
-
-      <div>
-        Megjegyzés: <span>{{ props.form.comment }}</span>
-      </div>
-    </div>
+    <BookingActionButtons />
   </div>
 </template>
 
 <style scoped>
 span {
   color: var(--color-text-primary);
-  font-weight: bold;
 }
 </style>
