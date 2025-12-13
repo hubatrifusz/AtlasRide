@@ -27,14 +27,13 @@ router.get("/", async (req, res) => {
 });
 
 // POST: Create a new booking and send confirmation email
-
 router.post("/", async (req, res) => {
   try {
     const newBooking = new Booking(req.body);
     const savedBooking = await newBooking.save();
 
     // Send emails to customer and admin
-    // await sendBookingEmail(savedBooking);
+    await sendBookingEmail(savedBooking);
 
     res.status(201).json(savedBooking);
   } catch (err) {
