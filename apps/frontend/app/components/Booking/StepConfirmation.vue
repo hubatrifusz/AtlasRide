@@ -6,7 +6,6 @@ import { formData, rideType } from '~/composables/useBookingForm';
   <div class="w-screen flex flex-col items-center gap-8 p-4">
     <fieldset class="border border-main-500 rounded-md p-8 md:w-1/2 w-full flex flex-col">
       <legend class="px-2 text-main-200">Személyes adatok</legend>
-      <span>{{ formData.rideType }}</span>
       <span v-if="formData.companyName"><UIcon name="i-lucide-building-2" class="bg-main-300" /> {{ formData.companyName }}</span>
       <span v-if="formData.name"><UIcon name="i-lucide-user" class="bg-main-300" /> {{ formData.name }}</span>
       <span v-if="formData.email"><UIcon name="i-lucide-mail" class="bg-main-300" /> {{ formData.email }}</span>
