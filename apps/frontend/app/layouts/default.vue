@@ -3,7 +3,7 @@
     <header>
       <nav class="md:rounded-md md:h-14 h-16 md:w-160 w-full md:p-px fixed left-1/2 -translate-x-1/2 md:top-8 z-100">
         <div class="md:rounded-md flex items-center justify-center gap-6 h-full w-full bg-main-800 p-1">
-          <UButton variant="ghost" size="xl" class="text-text-primary text-sm panchang cursor-not-allowed" disabled>Rólam</UButton>
+          <UButton variant="ghost" size="xl" class="text-text-primary text-sm panchang cursor-not-allowed" disabled>Rólunk</UButton>
           <img src="/logo_feher_2.svg" alt="logo" class="h-full cursor-pointer" @click="$router.push('/')" />
           <UButton variant="ghost" size="xl" class="text-text-primary text-sm panchang" to="/#prices">Árak</UButton>
         </div>
@@ -13,24 +13,7 @@
       <slot />
       <!-- <CookieControl/> -->
     </main>
-    <footer>
-      <div class="bg-main-800 text-text-primary text-center p-12 h-70 flex flex-row justify-center items-start relative">
-        <div class="flex flex-col w-fit">
-          <a href="mailto:info@atlasride.hu">
-            <UButton variant="ghost" class="text-text-primary cursor-pointer" icon="i-lucide-mail"> info@atlasride.hu </UButton>
-          </a>
-
-          <a href="tel:+36706005522">
-            <UButton variant="ghost" class="text-text-primary cursor-pointer" icon="i-lucide-phone"> +36 70 600 5522 </UButton>
-          </a>
-
-          <a href="https://www.facebook.com/profile.php?id=61571633512337" target="_blank" rel="noopener noreferrer">
-            <UButton variant="ghost" class="text-text-primary cursor-pointer" icon="i-lucide-facebook"> Atlas Ride Facebook </UButton>
-          </a>
-        </div>
-        <div class="absolute bottom-4 left-4 text-text-tertiary">v2.0.4</div>
-      </div>
-    </footer>
+    <Footer></Footer>
   </div>
 </template>
 
