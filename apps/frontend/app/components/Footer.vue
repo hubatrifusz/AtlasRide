@@ -6,12 +6,12 @@ const columns: FooterColumn[] = [
     label: 'Elérhetőség',
     children: [
       {
-        label: 'Email',
+        label: 'info@atlasride.hu',
         to: 'mailto:info@atlasride.hu',
         icon: 'i-lucide-mail',
       },
       {
-        label: 'Telefon',
+        label: '+36 70 600 5522',
         to: 'tel:+36706005522',
         icon: 'i-lucide-phone',
       },
