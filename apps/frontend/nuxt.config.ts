@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  modules: ['@nuxt/ui', '@nuxt/fonts', 'nuxt-gtag'],
+  modules: ['@nuxt/ui', '@nuxt/fonts', 'nuxt-gtag', '@nuxt/content'],
   css: ['~/assets/css/main.css'],
 
   gtag: {
