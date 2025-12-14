@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useBookingForm } from '~/composables/useBookingForm';
 const { reset } = useBookingForm();
-
 </script>
 
 <template>

@@ -33,6 +33,7 @@ const columns: FooterColumn[] = [
       {
         label: 'Adatvédelmi tájékoztató',
         icon: 'i-lucide-shield-half',
+        to: '/privacy_policy',
       },
     ],
   },
@@ -40,12 +41,15 @@ const columns: FooterColumn[] = [
 </script>
 
 <template>
-  <UFooter class="pt-8 px-4">
+  <UFooter class="pt-8 px-6">
     <template #bottom>
-      <p class="text-muted text-sm">Copyright © {{ new Date().getFullYear() }} Atlas Ride</p>
+      <div class="w-full flex flex-row justify-between">
+        <p class="text-muted text-sm">Copyright © {{ new Date().getFullYear() }} Atlas Ride</p>
+        <p class="text-muted text-sm">v.2.0.7.</p>
+      </div>
     </template>
     <template #default>
-        <UFooterColumns :columns="columns" />
+      <UFooterColumns :columns="columns" />
     </template>
   </UFooter>
 </template>
