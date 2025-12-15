@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+import { useCookieConsent } from '~/composables/useCookieConsent';
+
+const { getCookieConsentValue } = useCookieConsent();
+const cookieValue = getCookieConsentValue();
+</script>
+
 <template>
   <div>
     <header>
@@ -11,7 +18,7 @@
     </header>
     <main>
       <slot />
-      <!-- <CookieControl/> -->
+      <CookieControl v-if="cookieValue === undefined" />
     </main>
     <Footer></Footer>
   </div>

@@ -7,7 +7,10 @@
   </UApp>
 </template>
 
+<script setup>
+import { hu } from '@nuxt/ui/locale';
+import { useCookieConsent } from '~/composables/useCookieConsent';
 
-<script>
-import { hu } from '@nuxt/ui/locale'
+const { initCookies } = useCookieConsent();
+initCookies();
 </script>
