@@ -22,7 +22,7 @@ const { data: page } = await useAsyncData(route.path, () => {
   </main>
 </template>
 
-<style>
+<style scoped>
 h1 {
   font-family: 'Satoshi', sans-serif;
   font-weight: bold;

@@ -1,18 +1,28 @@
 <script lang="ts" setup>
-// eslint-disable-next-line no-undef
-const { initialize } = useGtag();
+import { useCookieConsent } from '~/composables/useCookieConsent';
+import { onMounted } from 'vue';
 
-const isVisible = ref(false);
+const { getCookieConsentValue, acceptCookies, denyAllCookies } = useCookieConsent();
 
-// eslint-disable-next-line no-undef
+const isVisible = ref(true);
+
 onMounted(() => {
-  setTimeout(() => {
-    animateCookieControl();
-  }, 500);
+  const cookieConsent = getCookieConsentValue();
+
+  if (cookieConsent === 'undefined') {
+    setTimeout(() => {
+      animateCookieControl();
+    }, 500);
+  }
 });
 
-function consentToCookies() {
-  initialize();
+function acceptCookiesClick() {
+  acceptCookies();
+  animateCookieControl();
+}
+
+function denyCookiesClick() {
+  denyAllCookies();
   animateCookieControl();
 }
 
@@ -37,8 +47,8 @@ function animateCookieControl() {
         </div>
       </div>
       <div class="flex flex-row gap-6 h-full">
-        <UButton size="xl" variant="soft" @click="animateCookieControl()" class="text-text-inverse"> Elutasítom </UButton>
-        <UButton size="xl" variant="solid" @click="consentToCookies()"> Elfogadom </UButton>
+        <UButton size="xl" variant="soft" @click="denyCookiesClick()" class="text-text-inverse"> Elutasítom </UButton>
+        <UButton size="xl" variant="solid" @click="acceptCookiesClick()"> Elfogadom </UButton>
       </div>
     </div>
   </div>

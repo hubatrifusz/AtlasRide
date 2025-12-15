@@ -11,7 +11,19 @@ export default defineNuxtConfig({
 
   gtag: {
     id: 'GT-WF3BNSGC',
-    initMode: 'manual',
+    initCommands: [
+      [
+        'consent',
+        'default',
+        {
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+          wait_for_update: 500,
+        },
+      ],
+    ],
   },
 
   vite: {
