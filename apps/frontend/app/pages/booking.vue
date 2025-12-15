@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { useBookingForm, rideType } from '~/composables/useBookingForm';
 
-const { nextStep, currentStep } = useBookingForm();
+const { currentStep, nextStep } = useBookingForm();
 
 const stepperItems = ref([
   {
-    title: 'Utazás típusa',
     icon: 'i-lucide-luggage',
+    title: 'Utazás típusa',
   },
   {
-    title: 'Személyes adatok',
     icon: 'i-lucide-user',
+    title: 'Személyes adatok',
   },
   {
-    title: 'Utazás részletei',
     icon: 'i-lucide-map',
+    title: 'Utazás részletei',
   },
   {
-    title: 'Megerősítés',
     icon: 'i-lucide-badge-check',
+    title: 'Megerősítés',
   },
 ]);
 

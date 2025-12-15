@@ -2,25 +2,26 @@
 import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
 import { vMaska } from 'maska/vue';
 import * as v from 'valibot';
-import { TravelInfoSchema } from '~/schemas/booking';
 import { ref, watch, shallowRef, watchEffect, onMounted } from 'vue';
+
 import { useBookingForm, formData, rideType } from '~/composables/useBookingForm';
+import { TravelInfoSchema } from '~/schemas/booking';
 
 const { isFormValid, nextStep } = useBookingForm();
 
 type TravelInfoData = v.InferOutput<typeof TravelInfoSchema>;
 
 const travelInfoForm = ref<TravelInfoData>({
-  departureLocation: '',
-  destinationLocation: '',
-  departureDate: '',
-  departureTime: '',
-  passengers: '',
   comment: '',
+  departureDate: '',
+  departureLocation: '',
+  departureTime: '',
+  destinationLocation: '',
+  flightNumber: '',
+  passengers: '',
   return: false,
   returnDate: '',
   returnTime: '',
-  flightNumber: '',
   takeoffTime: '',
 });
 

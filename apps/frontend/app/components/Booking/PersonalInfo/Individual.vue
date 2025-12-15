@@ -1,16 +1,17 @@
 <script setup lang="ts">
+import * as v from 'valibot';
 import { ref, watchEffect, onMounted } from 'vue';
+
 import { useBookingForm, formData } from '~/composables/useBookingForm';
 import { IndividualBookingSchema } from '~/schemas/booking';
-import * as v from 'valibot';
 
 const { isFormValid, nextStep } = useBookingForm();
 
 type IndividualBookingData = v.InferOutput<typeof IndividualBookingSchema>;
 
 const individualBookingForm = ref<IndividualBookingData>({
-  name: '',
   email: '',
+  name: '',
   phone: '',
 });
 

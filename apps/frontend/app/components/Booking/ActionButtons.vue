@@ -3,7 +3,7 @@ import { useBookingForm, formData } from '~/composables/useBookingForm';
 import { useBooking } from '~/utils/useBooking';
 
 const { postNewBooking } = useBooking();
-const { currentStep, previousStep, isFormValid, reset } = useBookingForm();
+const { currentStep, isFormValid, previousStep, reset } = useBookingForm();
 const toast = useToast();
 const emit = defineEmits(['save-form']);
 
@@ -18,19 +18,19 @@ async function bookRide() {
   try {
     await postNewBooking(formData.value);
     toast.add({
-      title: 'Sikeres ajánlatkérés!',
+      color: 'primary',
       description: 'Hamarosan felvesszük Önnel a kapcsolatot email-en keresztül.',
       icon: 'i-lucide-badge-check',
-      color: 'primary',
+      title: 'Sikeres ajánlatkérés!',
     });
 
     await navigateTo('/');
   } catch {
     toast.add({
-      title: 'Hiba történt!',
+      color: 'error',
       description: 'Próbálkozzon később, vagy keressen minket email-en keresztül.',
       icon: 'i-lucide-badge-alert',
-      color: 'error',
+      title: 'Hiba történt!',
     });
 
     reset();

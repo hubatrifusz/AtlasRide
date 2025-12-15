@@ -1,41 +1,43 @@
 <script lang="ts" setup>
 import type { FooterColumn } from '@nuxt/ui';
-import { useCookieConsent } from '~/composables/useCookieConsent';
+
 import { watch, onMounted } from 'vue';
 
-const { getCookieConsentValue, acceptCookies, denyAllCookies } = useCookieConsent();
+import { useCookieConsent } from '~/composables/useCookieConsent';
+
+const { acceptCookies, denyAllCookies, getCookieConsentValue } = useCookieConsent();
 
 const columns: FooterColumn[] = [
   {
-    label: 'Elérhetőség',
     children: [
       {
+        icon: 'i-lucide-mail',
         label: 'info@atlasride.hu',
         to: 'mailto:info@atlasride.hu',
-        icon: 'i-lucide-mail',
       },
       {
+        icon: 'i-lucide-phone',
         label: '+36 70 600 5522',
         to: 'tel:+36706005522',
-        icon: 'i-lucide-phone',
       },
       {
-        label: 'Facebook',
-        to: 'https://www.facebook.com/profile.php?id=61571633512337',
-        target: '_blank',
         icon: 'i-lucide-facebook',
+        label: 'Facebook',
+        target: '_blank',
+        to: 'https://www.facebook.com/profile.php?id=61571633512337',
       },
     ],
+    label: 'Elérhetőség',
   },
   {
-    label: 'Adatkezelés és biztonság',
     children: [
       {
-        label: 'Adatvédelmi tájékoztató',
         icon: 'i-lucide-shield-half',
+        label: 'Adatvédelmi tájékoztató',
         to: '/privacy_policy',
       },
     ],
+    label: 'Adatkezelés és biztonság',
   },
 ];
 
