@@ -61,6 +61,10 @@ watch(analyticalCookiesValue, async (newValue) => {
     denyAllCookies();
   }
 });
+
+function updateConsentValues() {
+  setConsentValue();
+};
 </script>
 
 <template>
@@ -81,7 +85,7 @@ watch(analyticalCookiesValue, async (newValue) => {
               title="Süti (Cookie) beállítások"
               description="Weboldalunk a működéshez elengedhetetlen sütiket használ. A felhasználói élmény javítása érdekében szeretnénk statisztikai (Google Analytics) sütiket is használni, de ehhez a hozzájárulása szükséges."
             >
-              <UButton icon="i-lucide-cookie" variant="outline" color="neutral" class="text-muted">Süti beállítások</UButton>
+              <UButton icon="i-lucide-cookie" variant="outline" color="neutral" class="text-muted" @click="updateConsentValues">Süti beállítások</UButton>
 
               <template #body>
                 <USwitch label="Feltétlenül szükséges sütik" default-value disabled color="neutral" />
