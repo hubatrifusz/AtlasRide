@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, watchEffect, onMounted } from 'vue';
-import { useBookingForm, formData } from '~/composables/useBookingForm';
 import * as v from 'valibot';
+import { ref, watchEffect, onMounted } from 'vue';
+
+import { useBookingForm, formData } from '~/composables/useBookingForm';
 import { CorporateBookingSchema } from '~/schemas/booking';
 
 const { isFormValid, nextStep } = useBookingForm();
@@ -10,10 +11,10 @@ type CorporateBookingData = v.InferOutput<typeof CorporateBookingSchema>;
 
 const corporateBookingForm = ref<CorporateBookingData>({
   companyName: '',
-  name: '',
   email: '',
-  phone: '',
   homeAddress: '',
+  name: '',
+  phone: '',
 });
 
 onMounted(() => {

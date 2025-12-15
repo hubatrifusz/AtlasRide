@@ -21,5 +21,9 @@
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@stylistic/eslint-plugin": "^5.6.1",
+    "eslint-plugin-perfectionist": "^4.15.1"
   }
 }

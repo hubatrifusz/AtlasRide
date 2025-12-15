@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+
 import { useBookingForm } from '~/composables/useBookingForm';
 
 const { clearForm } = useBookingForm();
