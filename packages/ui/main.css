@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme {
+  --color-main-100: #e4e7f0;
+  --color-main-200: #b9bdc9;
+  --color-main-300: #9297a3;
+  --color-main-400: #6c717d;
+  --color-main-500: #474c57;
+  --color-main-600: #2c3039;
+  --color-main-700: #1f2229;
+  --color-main-800: #14161c; /* Base */
+  --color-main-900: #0a0b10;
+
+  --color-accent-100: #f0f5fd;
+  --color-accent-200: #d7e3f6;
+  --color-accent-300: #b8cde9;
+  --color-accent-400: #93b1dc;
+  --color-accent-500: #6b8fd4; /* Base */
+  --color-accent-600: #4873c3;
+  --color-accent-700: #2f54a8;
+  --color-accent-800: #1c3b8a;
+  --color-accent-900: #0f266c;
+
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #c1c1c1;
+  --color-text-tertiary: #8f8f8f;
+  --color-text-inverse: #151517;
+  --color-text-inverse-secondary: var(--color-main-600);
+  --color-text-accent: #6b8fd4;
+
+  --color-error-100: #f8d7da;
+  --color-error-200: #f1aeb5;
+  --color-error-300: #ea858f;
+  --color-error-400: #e35c69;
+  --color-error-500: #dc3343;
+  --color-error-600: #b02734;
+  --color-error-700: #841b26;
+  --color-error-800: #5b1218;
+  --color-error-900: #33090b;
+}
+
+:root {
+  --ui-primary: var(--color-accent-500);
+  --ui-secondary: var(--color-main-600);
+
+  --ui-bg: var(--color-main-800);
+
+  --ui-text: var(--color-text-primary);
+  --ui-text-muted: var(--color-main-300);
+  --ui-text-highlighted: var(--color-text-primary);
+
+  --ui-bg-elevated: var(--color-main-700);
+
+  --ui-border-accented: var(--color-main-600);
+}

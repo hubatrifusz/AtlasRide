@@ -23,7 +23,11 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@nuxt/ui": "^4.2.1",
     "@stylistic/eslint-plugin": "^5.6.1",
-    "eslint-plugin-perfectionist": "^4.15.1"
+    "@tailwindcss/cli": "^4.1.18",
+    "eslint-plugin-perfectionist": "^4.15.1",
+    "tailwind": "^4.0.0",
+    "tailwindcss": "^4.1.13"
   }
 }
