@@ -43,7 +43,6 @@
 :root {
   --ui-primary: var(--color-accent-500);
   --ui-secondary: var(--color-main-600);
-
   --ui-bg: var(--color-main-800);
 
   --ui-text: var(--color-text-primary);
