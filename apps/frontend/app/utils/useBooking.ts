@@ -1,7 +1,7 @@
 export function useBooking() {
   const postNewBooking = async (form: any) => {
     try {
-      const response = await $fetch('https://atlas-ride-backend.vercel.app/api', {
+      const response = await $fetch('http://localhost:3002/api', {
         method: 'POST',
         body: form,
       });
@@ -14,7 +14,7 @@ export function useBooking() {
   };
 
   const getAllBooking = async () => {
-    const response = await fetch(`https://atlas-ride-backend.vercel.app/api`);
+    const response = await fetch(`http://localhost:3002/api`);
     if (!response.ok) {
       throw new Error('Failed to fetch bookings');
     }

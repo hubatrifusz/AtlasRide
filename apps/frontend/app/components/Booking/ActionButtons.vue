@@ -1,19 +1,24 @@
 <script setup lang="ts">
 const bookingStore = useBookingStore();
 
+const { postNewBooking } = useBooking();
+
 const emit = defineEmits(['submitForm']);
 
 const loading = ref<boolean>(false);
 
-function handleSubmit() {
+const handleConfirmBooking = async () => {
   loading.value = true;
-  console.log('Submitting form data:', bookingStore.form);
+  try {
+    const result = await postNewBooking(bookingStore.form);
 
-  setTimeout(() => {
+    console.log('Booking successful:', result);
+  } catch (error) {
+    alert('Hiba történt a mentés során.');
+  } finally {
     loading.value = false;
-    console.log('Form submitted successfully:', bookingStore.form);
-  }, 2000);
-}
+  }
+};
 </script>
 
 <template>
@@ -32,7 +37,7 @@ function handleSubmit() {
         trailing-icon="i-lucide-circle-check"
         class="order-1 sm:order-2 px-8 py-6 text-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
         :loading="loading"
-        @click="handleSubmit()"
+        @click="handleConfirmBooking()"
       >
         Megerősítés
       </UButton>
