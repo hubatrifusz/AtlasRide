@@ -149,7 +149,7 @@ async function sendBookingEmail(booking) {
     .join('');
 
   const adminEmailData = {
-    to: 'huba.trifusz@gmail.com',
+    to: 'info@atlasride.hu',
     subject: `Új ajánlatkérés - ${booking.customer.fullName}`,
     html: `<div style="font-family: Arial, sans-serif; color: #333;">
     <h2 style="color: #6b8fd4;">Új ajánlatkérés érkezett</h2>
