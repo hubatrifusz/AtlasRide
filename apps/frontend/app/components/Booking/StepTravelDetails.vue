@@ -8,7 +8,7 @@ const bookingStore = useBookingStore();
 
 const TravelDetailsSchema = v.object({
   departureLocation: AddressSchema,
-  destinationLocation: AddressSchema, 
+  destinationLocation: AddressSchema,
 });
 
 const airports = ref([
@@ -87,24 +87,16 @@ function initializeInputData() {
 function changeLocationType(type: 'destination' | 'departure') {
   if (type === 'departure') {
     state.departureLocation.city = '';
+    state.departureLocation.street = '';
+    state.departureLocation.zipCode = '';
     state.departureLocation.isAirport = !state.departureLocation.isAirport;
-    if (state.departureLocation.isAirport) {
-      bookingStore.airportInputCount += 1;
-      state.departureLocation.isAirport = true;
-    } else {
-      bookingStore.airportInputCount -= 1;
-      state.departureLocation.isAirport = false;
-    }
-  } else if (type === 'destination') {
-    state.destinationLocation.isAirport = !state.destinationLocation.isAirport;
+    bookingStore.airportInputCount += state.departureLocation.isAirport ? 1 : -1;
+  } else {
     state.destinationLocation.city = '';
-    if (state.destinationLocation.isAirport) {
-      bookingStore.airportInputCount += 1;
-      state.destinationLocation.isAirport = true;
-    } else {
-      bookingStore.airportInputCount -= 1;
-      state.destinationLocation.isAirport = false;
-    }
+    state.destinationLocation.street = '';
+    state.destinationLocation.zipCode = '';
+    state.destinationLocation.isAirport = !state.destinationLocation.isAirport;
+    bookingStore.airportInputCount += state.destinationLocation.isAirport ? 1 : -1;
   }
 }
 
@@ -200,15 +192,7 @@ onMounted(() => {
               </template>
               <UInput v-model="state.departureLocation.street" size="lg" placeholder="Példa utca 12." class="w-full" />
             </UFormField>
-            <UButton
-              @click="changeLocationType('departure')"
-              icon="i-lucide-plane"
-              size="lg"
-              color="primary"
-              variant="soft"
-              class="self-end"
-              title="Váltás repülőtérre"
-            />
+            <UButton @click="changeLocationType('departure')" icon="i-lucide-plane" size="lg" color="primary" variant="soft" class="self-end" title="Váltás repülőtérre" />
           </div>
         </div>
 
@@ -224,15 +208,7 @@ onMounted(() => {
               </template>
               <USelectMenu v-model="state.departureLocation.city" size="lg" :items="airports" value-key="city" placeholder="Válasszon repülőteret..." class="w-full" />
             </UFormField>
-            <UButton
-              @click="changeLocationType('departure')"
-              icon="i-lucide-map-pin-house"
-              size="lg"
-              color="primary"
-              variant="soft"
-              class="self-end"
-              title="Váltás címre"
-            />
+            <UButton @click="changeLocationType('departure')" icon="i-lucide-map-pin-house" size="lg" color="primary" variant="soft" class="self-end" title="Váltás címre" />
           </div>
         </div>
       </fieldset>
@@ -283,15 +259,7 @@ onMounted(() => {
               </template>
               <UInput v-model="state.destinationLocation.street" size="lg" placeholder="Példa utca 12." class="w-full" />
             </UFormField>
-            <UButton
-              @click="changeLocationType('destination')"
-              icon="i-lucide-plane"
-              size="lg"
-              color="primary"
-              variant="soft"
-              class="self-end"
-              title="Váltás repülőtérre"
-            />
+            <UButton @click="changeLocationType('destination')" icon="i-lucide-plane" size="lg" color="primary" variant="soft" class="self-end" title="Váltás repülőtérre" />
           </div>
         </div>
 
@@ -307,15 +275,7 @@ onMounted(() => {
               </template>
               <USelectMenu v-model="state.destinationLocation.city" size="lg" :items="airports" value-key="city" placeholder="Válasszon repülőteret..." class="w-full" />
             </UFormField>
-            <UButton
-              @click="changeLocationType('destination')"
-              icon="i-lucide-map-pin-house"
-              size="lg"
-              color="primary"
-              variant="soft"
-              class="self-end"
-              title="Váltás címre"
-            />
+            <UButton @click="changeLocationType('destination')" icon="i-lucide-map-pin-house" size="lg" color="primary" variant="soft" class="self-end" title="Váltás címre" />
           </div>
         </div>
       </fieldset>
