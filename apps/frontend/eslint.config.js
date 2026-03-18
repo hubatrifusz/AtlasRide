@@ -1,7 +1,7 @@
-import { config as sharedConfig } from '@repo/eslint-config';
+import sharedConfig from '@repo/eslint-config';
 import vuePlugin from 'eslint-plugin-vue';
-import vueParser from 'vue-eslint-parser';
 import globals from 'globals';
+import vueParser from 'vue-eslint-parser';
 
 export default [
   ...sharedConfig,
@@ -11,26 +11,26 @@ export default [
   {
     files: ['**/*.vue'],
     languageOptions: {
-      parser: vueParser,
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
       globals: {
         ...globals.browser,
         ...globals.node,
         ref: 'readonly',
+      },
+      parser: vueParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        parser: '@typescript-eslint/parser',
+        sourceType: 'module',
       },
     },
     plugins: {
       vue: vuePlugin,
     },
     rules: {
+      'no-console': 'off',
       'no-var': 'error',
       'prefer-const': 'error',
       'vue/no-unused-vars': 'error',
-      'no-console': 'off',
     },
   },
 ];

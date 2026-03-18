@@ -6,7 +6,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  modules: ['@nuxt/ui', '@nuxt/fonts', 'nuxt-gtag', '@nuxt/content'],
+  modules: [
+    '@nuxt/ui',
+    '@nuxt/fonts',
+    'nuxt-gtag',
+    '@nuxt/content',
+    '@solar-icons/nuxt',
+    '@pinia/nuxt',
+  ],
   css: ['~/assets/css/main.css'],
 
   gtag: {
@@ -26,13 +33,23 @@ export default defineNuxtConfig({
     ],
   },
 
+  solarIcons: {
+    namePrefix: 'Solar',
+    autoImport: true,
+    provider: true,
+    color: 'currentColor',
+    size: 24,
+    weight: 'Linear',
+    mirrored: false,
+  },
+
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss() as any],
   },
 
   app: {
     head: {
-      title: 'Atlas Ride - Prémium Reptértranszfer Szolgáltatás',
+      title: 'Atlas Ride - Prémium reptértranszfer szolgáltatás',
       htmlAttrs: {
         lang: 'hu',
       },

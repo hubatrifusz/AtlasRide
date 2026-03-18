@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { useCookieConsent } from '~/composables/useCookieConsent';
 import { onMounted } from 'vue';
 
-const { getCookieConsentValue, acceptCookies, denyAllCookies } = useCookieConsent();
+import { useCookieConsent } from '~/composables/useCookieConsent';
+
+const { acceptCookies, denyAllCookies, getCookieConsentValue } = useCookieConsent();
 
 const isVisible = ref(true);
 

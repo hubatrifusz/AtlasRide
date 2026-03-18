@@ -1,7 +1,6 @@
 export function useBooking() {
   const postNewBooking = async (form: any) => {
     try {
-      console.log(form);
       const response = await $fetch('https://atlas-ride-backend.vercel.app/api', {
         method: 'POST',
         body: form,
