@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const bookingStore = useBookingStore();
+const toast = useToast();
 
 const { postNewBooking } = useBooking();
 
@@ -12,7 +13,14 @@ const handleConfirmBooking = async () => {
   try {
     const result = await postNewBooking(bookingStore.form);
 
-    console.log('Booking successful:', result);
+    await navigateTo('/');
+    toast.add({
+      title: 'Sikeres ajánlatkérés!',
+      description: 'Hamarosan felvesszük Önnel a kapcsolatot.',
+      icon: 'i-heroicons-check-circle',
+      color: 'green',
+      timeout: 5000, // Optional: stays for 5 seconds
+    });
   } catch (error) {
   } finally {
     loading.value = false;
