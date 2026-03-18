@@ -17,16 +17,9 @@ export const useBookingStore = defineStore('booking', () => {
   const currentStep = ref<number>(0);
   const stepCount = ref<number>(0);
 
-  const isCurrentFormSectionValid = ref<boolean>(false);
-
   const airportInputCount = ref<number>(0);
 
-  const isAirportTransfer = computed(() => {
-    if (airportInputCount.value == 0) {
-      return false;
-    }
-    return true;
-  });
+  const isAirportTransfer = computed(() => airportInputCount.value > 0);
 
   function nextStep() {
     if (currentStep.value >= stepCount.value) return;
@@ -38,5 +31,5 @@ export const useBookingStore = defineStore('booking', () => {
     currentStep.value--;
   }
 
-  return { currentStep, stepCount, nextStep, prevStep, form, airportInputCount, isAirportTransfer, isCurrentFormSectionValid };
+  return { currentStep, stepCount, nextStep, prevStep, form, airportInputCount, isAirportTransfer };
 });

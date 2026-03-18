@@ -14,7 +14,6 @@ const handleConfirmBooking = async () => {
 
     console.log('Booking successful:', result);
   } catch (error) {
-    alert('Hiba történt a mentés során.');
   } finally {
     loading.value = false;
   }
