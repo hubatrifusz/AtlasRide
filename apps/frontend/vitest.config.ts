@@ -1,13 +1,23 @@
-import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vitest/config';
+import { defineVitestConfig } from '@nuxt/test-utils/config';
 import { fileURLToPath, URL } from 'node:url';
 
-export default defineConfig({
-  plugins: [vue()],
+export default defineVitestConfig({
   test: {
-    environment: 'happy-dom',
+    environment: 'nuxt',
     globals: true,
-    include: ['tests/unit/**/*.test.ts'],
+    include: ['tests/unit/**/*.test.ts', 'tests/integration/**/*.test.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      include: ['app/**/*.{js,ts,vue}'],
+      exclude: [
+        'node_modules/',
+        'tests/',
+        '**/*.d.ts',
+        '**/*.config.ts',
+        '**/mockData.ts',
+      ],
+    },
   },
   resolve: {
     alias: {

@@ -29,11 +29,7 @@ const personalStepperItems = ref([
 ]);
 
 const stepperItems = computed(() => {
-  if (bookingStore.isAirportTransfer) {
-    return airportStepperItems.value;
-  } else {
-    return personalStepperItems.value;
-  }
+  return bookingStore.isAirportTransfer ? airportStepperItems.value : personalStepperItems.value;
 });
 
 watchEffect(() => {
