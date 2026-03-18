@@ -1,32 +1,31 @@
-import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
-import turboPlugin from "eslint-plugin-turbo";
-import tseslint from "typescript-eslint";
-import onlyWarn from "eslint-plugin-only-warn";
+import perfectionist from 'eslint-plugin-perfectionist';
+import stylistic from '@stylistic/eslint-plugin';
 
-/**
- * A shared ESLint configuration for the repository.
- *
- * @type {import("eslint").Linter.Config[]}
- * */
-export const config = [
-  js.configs.recommended,
-  eslintConfigPrettier,
-  ...tseslint.configs.recommended,
+export default [
+  // 1. Stylistic Rules (The "Prettier" replacement)
   {
-    plugins: {
-      turbo: turboPlugin,
-    },
+    plugins: { '@stylistic': stylistic },
     rules: {
-      "turbo/no-undeclared-env-vars": "warn",
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
     },
   },
+
+  // 2. Perfectionist (Auto-sorting magic)
   {
-    plugins: {
-      onlyWarn,
+    plugins: { perfectionist },
+    rules: {
+      'perfectionist/sort-imports': 'error',
+      'perfectionist/sort-objects': 'error',
     },
   },
+
+  // 3. Base Logic Rules
   {
-    ignores: ["dist/**"],
+    rules: {
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'prefer-const': 'error',
+    },
   },
 ];
