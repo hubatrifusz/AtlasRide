@@ -6,14 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  modules: [
-    '@nuxt/ui',
-    '@nuxt/fonts',
-    'nuxt-gtag',
-    '@nuxt/content',
-    '@solar-icons/nuxt',
-    '@pinia/nuxt',
-  ],
+  modules: ['@nuxt/ui', '@nuxt/fonts', 'nuxt-gtag', '@nuxt/content', '@solar-icons/nuxt', '@pinia/nuxt'],
   css: ['~/assets/css/main.css'],
 
   gtag: {

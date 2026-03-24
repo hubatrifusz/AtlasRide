@@ -3,6 +3,7 @@
 ## Prerequisites
 
 Ensure you have:
+
 - Node.js 18+ installed
 - pnpm package manager
 - Dependencies installed: `pnpm install`
@@ -10,16 +11,19 @@ Ensure you have:
 ## Running Tests
 
 ### 1. Run All Unit Tests
+
 ```bash
 pnpm vitest run
 ```
 
 ### 2. Run Tests in Watch Mode (Development)
+
 ```bash
 pnpm vitest watch
 ```
 
 ### 3. Run Specific Test File
+
 ```bash
 # Unit test
 pnpm vitest run tests/unit/stores/useBookingStore.enhanced.test.ts
@@ -29,6 +33,7 @@ pnpm vitest run tests/integration/booking-flow.test.ts
 ```
 
 ### 4. Run E2E Tests with Playwright
+
 ```bash
 # Install Playwright browsers (first time only)
 pnpm playwright install
@@ -44,6 +49,7 @@ pnpm playwright test --headed
 ```
 
 ### 5. Generate Code Coverage Report
+
 ```bash
 pnpm vitest run --coverage
 ```
@@ -51,6 +57,7 @@ pnpm vitest run --coverage
 ## Test Files Overview
 
 ### Unit Tests (`tests/unit/`)
+
 - **useBookingStore.enhanced.test.ts** - Store logic and state management
 - **useBooking.test.ts** - API composable functions
 - **booking.test.ts** - Validation schemas (Valibot)
@@ -58,35 +65,44 @@ pnpm vitest run --coverage
 - **FormStepper.test.ts** - Stepper component rendering
 
 ### Integration Tests (`tests/integration/`)
+
 - **booking-flow.test.ts** - Multi-step form flow and component interactions
 
 ### E2E Tests (`tests/e2e/`)
+
 - **booking.spec.ts** - Full user journey testing
 
 ## Common Issues & Solutions
 
 ### Issue: Module resolution errors in IDE
+
 **Error:** `Cannot find module '~/stores/useBookingStore'`
 
 **Solution:** This is a TypeScript language server limitation. The tests will run fine because `vitest.config.ts` configures the alias properly. You can ignore these errors or restart your TypeScript server.
 
 ### Issue: Playwright browsers not installed
+
 **Error:** `Executable doesn't exist`
 
-**Solution:** 
+**Solution:**
+
 ```bash
 pnpm playwright install
 ```
 
 ### Issue: Port 3000 already in use for E2E tests
+
 **Error:** `Port 3000 is already allocated`
 
-**Solution:** 
+**Solution:**
+
 1. Stop other services running on port 3000
 2. Or update the E2E test URL to use a different port
 
 ### Issue: Vitest hangs or doesn't exit
+
 **Solution:** Add `--no-watch` flag:
+
 ```bash
 pnpm vitest run --no-watch
 ```
@@ -94,13 +110,17 @@ pnpm vitest run --no-watch
 ## Viewing Test Results
 
 ### Vitest Output
+
 Tests will display in the terminal with:
+
 - ✓ Green checkmarks for passing tests
 - ✗ Red X for failing tests
 - Detailed error messages with stack traces
 
 ### Playwright HTML Report
+
 After running Playwright tests, view the report:
+
 ```bash
 pnpm playwright show-report
 ```
