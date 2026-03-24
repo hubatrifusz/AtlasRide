@@ -11,16 +11,22 @@ const loading = ref<boolean>(false);
 const handleConfirmBooking = async () => {
   loading.value = true;
   try {
-    const result = await postNewBooking(bookingStore.form);
+    await postNewBooking(bookingStore.form);
 
     await navigateTo('/');
     toast.add({
       title: 'Sikeres ajánlatkérés!',
       description: 'Hamarosan felvesszük Önnel a kapcsolatot.',
-      icon: 'i-heroicons-check-circle',
+      icon: 'i-lucide-circle-check',
       color: 'primary',
     });
   } catch (error) {
+    toast.add({
+      title: 'Hiba történt!',
+      description: 'Sajnáljuk, de valami hiba történt az ajánlatkérés során. Kérjük, próbálja újra később.',
+      icon: 'i-lucide-circle-x',
+      color: 'error',
+    });
   } finally {
     loading.value = false;
   }

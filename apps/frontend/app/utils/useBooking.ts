@@ -1,3 +1,5 @@
+import type { BookingForm } from '~/types/bookingForm';
+
 export function useBooking() {
   const postNewBooking = async (form: any) => {
     try {
@@ -21,8 +23,23 @@ export function useBooking() {
     return response.json();
   };
 
+  const postHealthCheck = async (form: any) => {
+    try {
+      const response = await $fetch('https://atlas-ride-backend.vercel.app/api/health-check', {
+        method: 'POST',
+        body: form,
+      });
+
+      return response;
+    } catch (error) {
+      console.error('Error posting health check booking:', error);
+      throw error;
+    }
+  };
+
   return {
     postNewBooking,
     getAllBooking,
+    postHealthCheck,
   };
 }
