@@ -18,8 +18,7 @@ const handleConfirmBooking = async () => {
       title: 'Sikeres ajánlatkérés!',
       description: 'Hamarosan felvesszük Önnel a kapcsolatot.',
       icon: 'i-heroicons-check-circle',
-      color: 'green',
-      timeout: 5000, // Optional: stays for 5 seconds
+      color: 'primary',
     });
   } catch (error) {
   } finally {
@@ -52,7 +51,7 @@ const handleConfirmBooking = async () => {
   </div>
 
   <!-- Navigation Steps -->
-  <div v-else class="w-full max-w-4xl">
+  <div v-else class="w-full max-w-4xl" id="action_buttons">
     <div class="flex items-center justify-between gap-4 pt-8 border-t-2 border-main-700">
       <!-- Previous Button -->
       <UButton v-if="bookingStore.currentStep != 0" color="neutral" variant="soft" size="xl" icon="i-lucide-arrow-left" class="px-6" @click="bookingStore.prevStep()">

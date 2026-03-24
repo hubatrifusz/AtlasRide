@@ -128,7 +128,7 @@ describe('BookingActionButtons Component', () => {
         () =>
           new Promise((resolve) => {
             setTimeout(() => resolve({ success: true }), 100);
-          })
+          }),
       );
 
       vi.mock('~/utils/useBooking', () => ({

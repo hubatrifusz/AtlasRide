@@ -10,13 +10,7 @@ export default defineVitestConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       include: ['app/**/*.{js,ts,vue}'],
-      exclude: [
-        'node_modules/',
-        'tests/',
-        '**/*.d.ts',
-        '**/*.config.ts',
-        '**/mockData.ts',
-      ],
+      exclude: ['node_modules/', 'tests/', '**/*.d.ts', '**/*.config.ts', '**/mockData.ts'],
     },
   },
   resolve: {

@@ -27,31 +27,37 @@ tests/
 ## Running Tests
 
 ### All Tests
+
 ```bash
 pnpm test
 ```
 
 ### Unit Tests Only
+
 ```bash
 pnpm vitest run tests/unit
 ```
 
 ### Integration Tests Only
+
 ```bash
 pnpm vitest run tests/integration
 ```
 
 ### E2E Tests Only
+
 ```bash
 pnpm playwright test tests/e2e
 ```
 
 ### Watch Mode (for development)
+
 ```bash
 pnpm vitest watch
 ```
 
 ### E2E Tests with UI
+
 ```bash
 pnpm playwright test --ui
 ```
@@ -61,6 +67,7 @@ pnpm playwright test --ui
 ### Unit Tests (Vitest)
 
 #### 1. **useBookingStore Tests** (`tests/unit/stores/useBookingStore.enhanced.test.ts`)
+
 - ✅ Initial state validation
 - ✅ Step navigation (next/previous)
 - ✅ Airport transfer detection
@@ -68,6 +75,7 @@ pnpm playwright test --ui
 - ✅ Edge cases handling
 
 **Coverage Areas:**
+
 - State initialization
 - Step count management
 - Current step tracking
@@ -75,6 +83,7 @@ pnpm playwright test --ui
 - Form data persistence
 
 #### 2. **useBooking Composable Tests** (`tests/unit/utils/useBooking.test.ts`)
+
 - ✅ Successful booking submission
 - ✅ API error handling (400, 500, network errors)
 - ✅ Fetching all bookings
@@ -82,6 +91,7 @@ pnpm playwright test --ui
 - ✅ Malformed data handling
 
 **Coverage Areas:**
+
 - `postNewBooking()` function
 - `getAllBooking()` function
 - Error states
@@ -89,6 +99,7 @@ pnpm playwright test --ui
 - API mocking with `vi.mock()`
 
 #### 3. **Booking Schemas Tests** (`tests/unit/schemas/booking.test.ts`)
+
 - ✅ Address validation
 - ✅ Company location validation
 - ✅ Contact data validation
@@ -96,6 +107,7 @@ pnpm playwright test --ui
 - ✅ Custom error messages (Hungarian)
 
 **Coverage Areas:**
+
 - `AddressSchema`
 - `CompanyLocationSchema`
 - `ContactDataSchema`
@@ -104,6 +116,7 @@ pnpm playwright test --ui
 - Required field validation
 
 #### 4. **ActionButtons Component Tests** (`tests/unit/components/ActionButtons.test.ts`)
+
 - ✅ Navigation button rendering
 - ✅ Confirmation button on final step
 - ✅ Event emission
@@ -111,12 +124,14 @@ pnpm playwright test --ui
 - ✅ Different step counts (3 vs 4 steps)
 
 **Coverage Areas:**
+
 - Next/Previous button behavior
 - Confirmation button
 - Loading state during submission
 - Button accessibility
 
 #### 5. **FormStepper Component Tests** (`tests/unit/components/FormStepper.test.ts`)
+
 - ✅ Personal transfer stepper (3 steps)
 - ✅ Airport transfer stepper (4 steps)
 - ✅ Dynamic switching between flows
@@ -124,6 +139,7 @@ pnpm playwright test --ui
 - ✅ Step count updates
 
 **Coverage Areas:**
+
 - Stepper item rendering
 - Dynamic flow switching
 - Airport detection
@@ -132,6 +148,7 @@ pnpm playwright test --ui
 ### Integration Tests (Vitest + @nuxt/test-utils)
 
 #### **Booking Flow Integration** (`tests/integration/booking-flow.test.ts`)
+
 - ✅ Complete 3-step personal flow
 - ✅ Complete 4-step airport flow
 - ✅ Dynamic flow switching
@@ -141,6 +158,7 @@ pnpm playwright test --ui
 - ✅ Loading states
 
 **Coverage Areas:**
+
 - Multi-step form navigation
 - Component interaction
 - Store integration
@@ -203,6 +221,7 @@ pnpm playwright test --ui
 ## Key Testing Patterns
 
 ### 1. Mocking API Calls (Vitest)
+
 ```typescript
 const mockFetch = vi.fn();
 vi.stubGlobal('$fetch', mockFetch);
@@ -211,6 +230,7 @@ mockFetch.mockResolvedValueOnce({ success: true });
 ```
 
 ### 2. Pinia Store Setup
+
 ```typescript
 beforeEach(() => {
   setActivePinia(createPinia());
@@ -218,6 +238,7 @@ beforeEach(() => {
 ```
 
 ### 3. Component Testing
+
 ```typescript
 const wrapper = mount(ActionButtons);
 await wrapper.find('button').trigger('click');
@@ -225,12 +246,14 @@ expect(wrapper.emitted('submitForm')).toBeTruthy();
 ```
 
 ### 4. Playwright Selectors (Accessible)
+
 ```typescript
 await page.getByRole('button', { name: /Következő/i });
 await page.getByLabel(/Teljes név/i);
 ```
 
 ### 5. API Mocking (Playwright)
+
 ```typescript
 await page.route('**/api', (route) => {
   route.fulfill({
@@ -242,22 +265,24 @@ await page.route('**/api', (route) => {
 
 ## Test Coverage Summary
 
-| Test Type | Files | Test Cases | Coverage |
-|-----------|-------|------------|----------|
-| Unit Tests | 5 | 120+ | Store, Utils, Schemas, Components |
-| Integration Tests | 1 | 25+ | Multi-step flows, API integration |
-| E2E Tests | 1 | 30+ | Full user journeys, edge cases |
-| **Total** | **7** | **175+** | **Comprehensive** |
+| Test Type         | Files | Test Cases | Coverage                          |
+| ----------------- | ----- | ---------- | --------------------------------- |
+| Unit Tests        | 5     | 120+       | Store, Utils, Schemas, Components |
+| Integration Tests | 1     | 25+        | Multi-step flows, API integration |
+| E2E Tests         | 1     | 30+        | Full user journeys, edge cases    |
+| **Total**         | **7** | **175+**   | **Comprehensive**                 |
 
 ## Edge Cases Covered
 
 ### Form Validation
+
 - ✅ Empty required fields
 - ✅ Invalid email format
 - ✅ Missing flight numbers
 - ✅ Incomplete company information
 
 ### Error States
+
 - ✅ Network errors
 - ✅ 400 Bad Request
 - ✅ 500 Internal Server Error
@@ -265,6 +290,7 @@ await page.route('**/api', (route) => {
 - ✅ Malformed JSON responses
 
 ### User Interactions
+
 - ✅ Rapid clicking
 - ✅ Back button navigation
 - ✅ Browser back/forward
@@ -272,6 +298,7 @@ await page.route('**/api', (route) => {
 - ✅ Dynamic flow switching
 
 ### Data Handling
+
 - ✅ Special characters (Hungarian)
 - ✅ Very long strings
 - ✅ Null/undefined values
@@ -290,6 +317,7 @@ await page.route('**/api', (route) => {
 ## Continuous Integration
 
 ### GitHub Actions Example
+
 ```yaml
 name: Tests
 on: [push, pull_request]
@@ -307,16 +335,19 @@ jobs:
 ## Debugging Tests
 
 ### Vitest Debug Mode
+
 ```bash
 pnpm vitest --inspect-brk
 ```
 
 ### Playwright Debug Mode
+
 ```bash
 pnpm playwright test --debug
 ```
 
 ### View Playwright Report
+
 ```bash
 pnpm playwright show-report
 ```
@@ -342,6 +373,7 @@ Maintain the same testing patterns and ensure all new code has appropriate test 
 ## Support
 
 For questions or issues with the test suite, refer to:
+
 - [Vitest Documentation](https://vitest.dev/)
 - [Playwright Documentation](https://playwright.dev/)
 - [@nuxt/test-utils Documentation](https://nuxt.com/docs/getting-started/testing)

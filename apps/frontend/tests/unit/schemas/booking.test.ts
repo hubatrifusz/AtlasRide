@@ -1,11 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as v from 'valibot';
-import {
-  AddressSchema,
-  CompanyLocationSchema,
-  ContactDataSchema,
-  FlightInformationSchema,
-} from '../../../app/schemas/booking';
+import { AddressSchema, CompanyLocationSchema, ContactDataSchema, FlightInformationSchema } from '../../../app/schemas/booking';
 
 describe('Booking Schemas Validation', () => {
   describe('AddressSchema', () => {
@@ -232,12 +227,7 @@ describe('Booking Schemas Validation', () => {
     });
 
     it('should validate various email formats', () => {
-      const emails = [
-        'test@example.com',
-        'user.name@example.co.uk',
-        'user+tag@example.com',
-        'user_123@test-domain.com',
-      ];
+      const emails = ['test@example.com', 'user.name@example.co.uk', 'user+tag@example.com', 'user_123@test-domain.com'];
 
       emails.forEach((email) => {
         const contact = {

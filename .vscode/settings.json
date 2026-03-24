@@ -5,5 +5,6 @@
   },
   "eslint.workingDirectories": [{ "pattern": "./apps/*" }, { "pattern": "./packages/*" }],
   // Disable the default formatter so it doesn't fight ESLint
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "postman.settings.dotenv-detection-notification-visibility": false
 }
