@@ -14,13 +14,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST: Create a new booking and send confirmation email
 router.post('/', async (req, res) => {
   try {
     const newBooking = new Booking(req.body);
     const savedBooking = await newBooking.save();
 
-    // Try to send emails, but don't fail the booking if email fails
     try {
       await sendBookingEmail(savedBooking);
     } catch (emailError) {
