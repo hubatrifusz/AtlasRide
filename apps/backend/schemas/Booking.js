@@ -33,32 +33,22 @@ export const BookingFormSchema = v.pipe(
 
   v.forward(
     v.check((input) => {
-      const isAirport = 'IATACode' in input.departure.location || 'IATACode' in input.destination.location;
-      if (isAirport) {
-        return !!input.flightInfo?.outboundFlightNumber?.trim();
-      }
-      return true;
-    }, 'Outbound flight number is required for airport transfers'),
+      const isDepartureAirport = 'IATACode' in input.departure.location;
+      const outboundFlightNumberExists = !!input.flightInfo?.outboundFlightNumber?.trim();
+
+      return isDepartureAirport == outboundFlightNumberExists;
+    }, 'Outbound flight number is required, when departure is an airport'),
     ['flightInfo', 'outboundFlightNumber'],
   ),
 
   v.forward(
     v.check((input) => {
-      if (!!input.returnInfo) {
-        return !!input.flightInfo?.inboundFlightNumber?.trim();
-      }
-      return true;
-    }, 'Inbound flight number is required for return trips'),
+      const isDestinationAirport = 'IATACode' in input.destination.location;
+      const isReturnInfoFilled = !!input.returnInfo;
+      const isInboundFlightNumberFilled = !!input.flightInfo?.inboundFlightNumber;
+
+      return (isDestinationAirport && isReturnInfoFilled) === isInboundFlightNumberFilled;
+    }, "Inbound flight number can't exist, when returnInfo is not provide"),
     ['flightInfo', 'inboundFlightNumber'],
   ),
-
-  v.check((input) => {
-    const isAirport = 'IATACode' in input.departure.location || 'IATACode' in input.destination.location;
-    const hasReturn = !!input.returnInfo;
-
-    if (!isAirport && !hasReturn) {
-      return input.flightInfo === undefined;
-    }
-    return true;
-  }, 'Flight information is only allowed for airport transfers or return trips'),
 );
