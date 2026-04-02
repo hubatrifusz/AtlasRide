@@ -12,8 +12,13 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     '@solar-icons/nuxt',
     '@pinia/nuxt',
+    '@nuxt/eslint'
   ],
   css: ['~/assets/css/main.css'],
+
+  eslint: {
+    checker: true
+  },
 
   gtag: {
     id: 'GT-WF3BNSGC',
@@ -26,10 +31,10 @@ export default defineNuxtConfig({
           ad_personalization: 'denied',
           ad_storage: 'denied',
           analytics_storage: 'denied',
-          wait_for_update: 500,
-        },
-      ],
-    ],
+          wait_for_update: 500
+        }
+      ]
+    ]
   },
 
   solarIcons: {
@@ -39,19 +44,19 @@ export default defineNuxtConfig({
     color: 'currentColor',
     size: 24,
     weight: 'Linear',
-    mirrored: false,
+    mirrored: false
   },
 
   vite: {
-    plugins: [tailwindcss() as any],
+    plugins: [tailwindcss()]
   },
 
   app: {
     head: {
       title: 'Atlas Ride - Prémium reptértranszfer szolgáltatás',
       htmlAttrs: {
-        lang: 'hu',
-      },
-    },
-  },
+        lang: 'hu'
+      }
+    }
+  }
 })
