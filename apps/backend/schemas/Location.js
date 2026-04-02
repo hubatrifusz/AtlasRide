@@ -2,8 +2,8 @@ import * as v from 'valibot';
 
 export const AddressSchema = v.object({
   city: v.pipe(v.string(), v.nonEmpty()),
-  street: v.pipe(v.string(), v.nonEmpty()),
-  zipCode: v.pipe(v.string(), v.nonEmpty()),
+  street: v.optional(v.pipe(v.string(), v.trim(), v.nonEmpty())),
+  zipCode: v.optional(v.pipe(v.string(), v.trim(), v.nonEmpty())),
 });
 
 const AirportSchema = v.object({
@@ -12,4 +12,4 @@ const AirportSchema = v.object({
   IATACode: v.pipe(v.string(), v.nonEmpty(), v.length(3)),
 });
 
-export const LocationSchema = v.union([AddressSchema, AirportSchema]);
+export const LocationSchema = v.union([AirportSchema, AddressSchema]);

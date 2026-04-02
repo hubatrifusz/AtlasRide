@@ -1,10 +1,10 @@
+import { validate } from '../middleware/validateForm';
+
 const express = require('express');
 const Booking = require('../models/Booking');
-const sendBookingEmail = require('../utils/sendEmail');
 
 const router = express.Router();
 
-// GET ALL bookings
 router.get('/', async (req, res) => {
   try {
     const bookings = await Booking.find();
@@ -14,22 +14,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validate(Booking), async (req, res, next) => {
   try {
     const newBooking = new Booking(req.body);
     const savedBooking = await newBooking.save();
-
-    try {
-      await sendBookingEmail(savedBooking);
-    } catch (emailError) {
-      console.error('⚠️  Booking saved but email failed:', emailError.message);
-      // Continue anyway - booking is saved
-    }
-
     res.status(201).json(savedBooking);
-  } catch (err) {
-    console.error('❌ Booking error:', err);
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 

@@ -1,0 +1,5 @@
+{
+  "name": "@atlasride/prettier-config",
+  "private": true,
+  "main": "index.json"
+}
