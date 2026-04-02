@@ -19,7 +19,7 @@ describe('useBooking Composable', () => {
       const mockResponse = {
         success: true,
         bookingId: '12345',
-        message: 'Booking created successfully',
+        message: 'Booking created successfully'
       }
 
       mockFetch.mockResolvedValueOnce(mockResponse)
@@ -29,17 +29,17 @@ describe('useBooking Composable', () => {
         customer: {
           fullName: 'John Doe',
           email: 'john@example.com',
-          phone: '+36301234567',
+          phone: '+36301234567'
         },
         departureLocation: { city: 'Budapest', isAirport: false },
-        destinationLocation: { city: 'Vienna', isAirport: true },
+        destinationLocation: { city: 'Vienna', isAirport: true }
       }
 
       const result = await postNewBooking(mockForm)
 
       expect(mockFetch).toHaveBeenCalledWith('http://localhost:3002/api', {
         method: 'POST',
-        body: mockForm,
+        body: mockForm
       })
       expect(result).toEqual(mockResponse)
     })
@@ -75,7 +75,7 @@ describe('useBooking Composable', () => {
       const mockForm = { customer: { fullName: 'Test' } }
 
       await expect(postNewBooking(mockForm)).rejects.toThrow(
-        'Internal Server Error',
+        'Internal Server Error'
       )
     })
 
@@ -92,45 +92,45 @@ describe('useBooking Composable', () => {
           companyLocation: {
             city: 'Budapest',
             street: 'Andrassy ut 1',
-            zipCode: '1061',
-          },
+            zipCode: '1061'
+          }
         },
         homeAddress: {
           city: 'Budapest',
           street: 'Deak ter',
           zipCode: '1052',
-          isAirport: false,
+          isAirport: false
         },
         passengerCount: 3,
         departureLocation: {
           city: 'Budapest',
           street: '',
           zipCode: '',
-          isAirport: true,
+          isAirport: true
         },
         departureDateTime: { date: '2026-04-15', time: '10:30' },
         destinationLocation: {
           city: 'Vienna',
           street: 'Main St',
           zipCode: '1010',
-          isAirport: false,
+          isAirport: false
         },
         returnInfo: {
           isReturn: true,
-          returnDateTime: { date: '2026-04-20', time: '15:00' },
+          returnDateTime: { date: '2026-04-20', time: '15:00' }
         },
         flightInfo: {
           outboundFlightNumber: 'FR1234',
-          returnFlightNumber: 'FR5678',
+          returnFlightNumber: 'FR5678'
         },
-        comment: 'Please bring child seat',
+        comment: 'Please bring child seat'
       }
 
       const result = await postNewBooking(completeForm)
 
       expect(mockFetch).toHaveBeenCalledWith('http://localhost:3002/api', {
         method: 'POST',
-        body: completeForm,
+        body: completeForm
       })
       expect(result).toEqual(mockResponse)
     })
@@ -158,23 +158,23 @@ describe('useBooking Composable', () => {
           id: '1',
           customer: {
             fullName: 'John Doe',
-            email: 'john@example.com',
+            email: 'john@example.com'
           },
-          departureLocation: { city: 'Budapest' },
+          departureLocation: { city: 'Budapest' }
         },
         {
           id: '2',
           customer: {
             fullName: 'Jane Smith',
-            email: 'jane@example.com',
+            email: 'jane@example.com'
           },
-          departureLocation: { city: 'Vienna' },
-        },
+          departureLocation: { city: 'Vienna' }
+        }
       ]
 
       global.fetch = vi.fn().mockResolvedValueOnce({
         ok: true,
-        json: async () => mockBookings,
+        json: async () => mockBookings
       })
 
       const { getAllBooking } = useBooking()
@@ -187,7 +187,7 @@ describe('useBooking Composable', () => {
     it('should throw error when fetch fails', async () => {
       global.fetch = vi.fn().mockResolvedValueOnce({
         ok: false,
-        status: 500,
+        status: 500
       })
 
       const { getAllBooking } = useBooking()
@@ -206,7 +206,7 @@ describe('useBooking Composable', () => {
     it('should fetch empty array of bookings', async () => {
       global.fetch = vi.fn().mockResolvedValueOnce({
         ok: true,
-        json: async () => [],
+        json: async () => []
       })
 
       const { getAllBooking } = useBooking()
@@ -218,7 +218,7 @@ describe('useBooking Composable', () => {
     it('should handle 404 Not Found error', async () => {
       global.fetch = vi.fn().mockResolvedValueOnce({
         ok: false,
-        status: 404,
+        status: 404
       })
 
       const { getAllBooking } = useBooking()
@@ -233,7 +233,7 @@ describe('useBooking Composable', () => {
         ok: true,
         json: async () => {
           throw new Error('Invalid JSON')
-        },
+        }
       })
 
       const { getAllBooking } = useBooking()
@@ -250,7 +250,7 @@ describe('useBooking Composable', () => {
 
       expect(mockFetch).toHaveBeenCalledWith('http://localhost:3002/api', {
         method: 'POST',
-        body: null,
+        body: null
       })
     })
 
@@ -263,7 +263,7 @@ describe('useBooking Composable', () => {
 
       expect(mockFetch).toHaveBeenCalledWith('http://localhost:3002/api', {
         method: 'POST',
-        body: undefined,
+        body: undefined
       })
     })
   })

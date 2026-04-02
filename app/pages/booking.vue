@@ -16,17 +16,17 @@ const handleSubmitForm = () => {
     <BookingFormStepper />
 
     <BookingStepTravelDetails
-      ref="formRef"
-      v-if="bookingStore.currentStep == 0" />
+      v-if="bookingStore.currentStep == 0"
+      ref="formRef" />
     <BookingStepFlightInformation
-      ref="formRef"
-      v-if="bookingStore.isAirportTransfer && bookingStore.currentStep == 1" />
+      v-if="bookingStore.isAirportTransfer && bookingStore.currentStep == 1"
+      ref="formRef" />
     <BookingStepContactDetails
-      ref="formRef"
       v-if="
         (bookingStore.currentStep === 1 && !bookingStore.isAirportTransfer) ||
         (bookingStore.isAirportTransfer && bookingStore.currentStep === 2)
-      " />
+      "
+      ref="formRef" />
 
     <BookingStepConfirmation
       v-if="

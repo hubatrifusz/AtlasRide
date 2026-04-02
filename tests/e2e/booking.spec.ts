@@ -9,12 +9,12 @@ test.describe('Booking Page - E2E Tests', () => {
   test.describe('Page initialization', () => {
     test('has title', async ({ page }) => {
       await expect(page).toHaveTitle(
-        'Atlas Ride - Prémium reptértranszfer szolgáltatás',
+        'Atlas Ride - Prémium reptértranszfer szolgáltatás'
       )
     })
 
     test('it should be at the first step after initialization', async ({
-      page,
+      page
     }) => {
       await expect(page.getByText('Utazás részletei')).toBeVisible()
     })
@@ -22,7 +22,7 @@ test.describe('Booking Page - E2E Tests', () => {
 
   test.describe('Action buttons', () => {
     test('only Next button is visible after initialization', async ({
-      page,
+      page
     }) => {
       const actionButtonsContainer = await page.locator('#action_buttons')
       const buttons = await actionButtonsContainer.getByRole('button')

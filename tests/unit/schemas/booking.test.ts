@@ -4,7 +4,7 @@ import {
   AddressSchema,
   CompanyLocationSchema,
   ContactDataSchema,
-  FlightInformationSchema,
+  FlightInformationSchema
 } from '../../../app/schemas/booking'
 
 describe('Booking Schemas Validation', () => {
@@ -14,7 +14,7 @@ describe('Booking Schemas Validation', () => {
         city: 'Budapest',
         street: 'Andrassy ut 1',
         zipCode: '1061',
-        isAirport: false,
+        isAirport: false
       }
 
       const result = v.parse(AddressSchema, validAddress)
@@ -25,7 +25,7 @@ describe('Booking Schemas Validation', () => {
     it('should validate address with only required fields', () => {
       const minimalAddress = {
         city: 'Vienna',
-        isAirport: true,
+        isAirport: true
       }
 
       const result = v.parse(AddressSchema, minimalAddress)
@@ -39,7 +39,7 @@ describe('Booking Schemas Validation', () => {
         city: '',
         street: 'Some street',
         zipCode: '1234',
-        isAirport: false,
+        isAirport: false
       }
 
       expect(() => v.parse(AddressSchema, invalidAddress)).toThrow()
@@ -49,7 +49,7 @@ describe('Booking Schemas Validation', () => {
       const invalidAddress = {
         street: 'Some street',
         zipCode: '1234',
-        isAirport: false,
+        isAirport: false
       }
 
       expect(() => v.parse(AddressSchema, invalidAddress)).toThrow()
@@ -59,7 +59,7 @@ describe('Booking Schemas Validation', () => {
       const invalidAddress = {
         city: 'Budapest',
         street: 'Some street',
-        zipCode: '1234',
+        zipCode: '1234'
       }
 
       expect(() => v.parse(AddressSchema, invalidAddress)).toThrow()
@@ -70,7 +70,7 @@ describe('Booking Schemas Validation', () => {
         city: 'Budapest',
         street: undefined,
         zipCode: '1234',
-        isAirport: false,
+        isAirport: false
       }
 
       const result = v.parse(AddressSchema, address)
@@ -83,7 +83,7 @@ describe('Booking Schemas Validation', () => {
         city: 'Budapest',
         street: 'Main St',
         zipCode: undefined,
-        isAirport: true,
+        isAirport: true
       }
 
       const result = v.parse(AddressSchema, address)
@@ -97,7 +97,7 @@ describe('Booking Schemas Validation', () => {
         city: 'Budapest',
         street: '',
         zipCode: '',
-        isAirport: true,
+        isAirport: true
       }
 
       const result = v.parse(AddressSchema, airportAddress)
@@ -111,7 +111,7 @@ describe('Booking Schemas Validation', () => {
       const validCompany = {
         city: 'Budapest',
         street: 'Andrassy ut 1',
-        zipCode: '1061',
+        zipCode: '1061'
       }
 
       const result = v.parse(CompanyLocationSchema, validCompany)
@@ -123,7 +123,7 @@ describe('Booking Schemas Validation', () => {
       const invalidCompany = {
         city: '',
         street: 'Some street',
-        zipCode: '1234',
+        zipCode: '1234'
       }
 
       expect(() => v.parse(CompanyLocationSchema, invalidCompany)).toThrow()
@@ -133,7 +133,7 @@ describe('Booking Schemas Validation', () => {
       const invalidCompany = {
         city: 'Budapest',
         street: '',
-        zipCode: '1234',
+        zipCode: '1234'
       }
 
       expect(() => v.parse(CompanyLocationSchema, invalidCompany)).toThrow()
@@ -143,7 +143,7 @@ describe('Booking Schemas Validation', () => {
       const invalidCompany = {
         city: 'Budapest',
         street: 'Andrassy ut 1',
-        zipCode: '',
+        zipCode: ''
       }
 
       expect(() => v.parse(CompanyLocationSchema, invalidCompany)).toThrow()
@@ -159,7 +159,7 @@ describe('Booking Schemas Validation', () => {
       const companyWithSpecialChars = {
         city: 'Győr',
         street: 'Fő út 123/A',
-        zipCode: '9024',
+        zipCode: '9024'
       }
 
       const result = v.parse(CompanyLocationSchema, companyWithSpecialChars)
@@ -173,7 +173,7 @@ describe('Booking Schemas Validation', () => {
       const validContact = {
         fullName: 'John Doe',
         email: 'john.doe@example.com',
-        phone: '+36301234567',
+        phone: '+36301234567'
       }
 
       const result = v.parse(ContactDataSchema, validContact)
@@ -185,7 +185,7 @@ describe('Booking Schemas Validation', () => {
       const invalidContact = {
         fullName: '',
         email: 'john@example.com',
-        phone: '+36301234567',
+        phone: '+36301234567'
       }
 
       expect(() => v.parse(ContactDataSchema, invalidContact)).toThrow()
@@ -195,7 +195,7 @@ describe('Booking Schemas Validation', () => {
       const invalidContact = {
         fullName: 'John Doe',
         email: '',
-        phone: '+36301234567',
+        phone: '+36301234567'
       }
 
       expect(() => v.parse(ContactDataSchema, invalidContact)).toThrow()
@@ -205,7 +205,7 @@ describe('Booking Schemas Validation', () => {
       const invalidContact = {
         fullName: 'John Doe',
         email: 'invalid-email',
-        phone: '+36301234567',
+        phone: '+36301234567'
       }
 
       expect(() => v.parse(ContactDataSchema, invalidContact)).toThrow()
@@ -215,7 +215,7 @@ describe('Booking Schemas Validation', () => {
       const invalidContact = {
         fullName: 'John Doe',
         email: 'johnexample.com',
-        phone: '+36301234567',
+        phone: '+36301234567'
       }
 
       expect(() => v.parse(ContactDataSchema, invalidContact)).toThrow()
@@ -225,7 +225,7 @@ describe('Booking Schemas Validation', () => {
       const invalidContact = {
         fullName: 'John Doe',
         email: 'john@example.com',
-        phone: '',
+        phone: ''
       }
 
       expect(() => v.parse(ContactDataSchema, invalidContact)).toThrow()
@@ -236,14 +236,14 @@ describe('Booking Schemas Validation', () => {
         'test@example.com',
         'user.name@example.co.uk',
         'user+tag@example.com',
-        'user_123@test-domain.com',
+        'user_123@test-domain.com'
       ]
 
       emails.forEach((email) => {
         const contact = {
           fullName: 'Test User',
           email,
-          phone: '+36301234567',
+          phone: '+36301234567'
         }
 
         const result = v.parse(ContactDataSchema, contact)
@@ -255,7 +255,7 @@ describe('Booking Schemas Validation', () => {
       const hungarianContact = {
         fullName: 'Nagy János',
         email: 'nagy.janos@pelda.hu',
-        phone: '+36301234567',
+        phone: '+36301234567'
       }
 
       const result = v.parse(ContactDataSchema, hungarianContact)
@@ -268,7 +268,7 @@ describe('Booking Schemas Validation', () => {
     it('should validate valid flight information', () => {
       const validFlight = {
         outboundFlightNumber: 'FR1234',
-        returnFlightNumber: 'FR5678',
+        returnFlightNumber: 'FR5678'
       }
 
       const result = v.parse(FlightInformationSchema, validFlight)
@@ -278,7 +278,7 @@ describe('Booking Schemas Validation', () => {
 
     it('should validate with only outbound flight number', () => {
       const onewayFlight = {
-        outboundFlightNumber: 'LH4567',
+        outboundFlightNumber: 'LH4567'
       }
 
       const result = v.parse(FlightInformationSchema, onewayFlight)
@@ -289,7 +289,7 @@ describe('Booking Schemas Validation', () => {
     it('should fail validation when outbound flight number is empty', () => {
       const invalidFlight = {
         outboundFlightNumber: '',
-        returnFlightNumber: 'FR5678',
+        returnFlightNumber: 'FR5678'
       }
 
       expect(() => v.parse(FlightInformationSchema, invalidFlight)).toThrow()
@@ -297,7 +297,7 @@ describe('Booking Schemas Validation', () => {
 
     it('should fail validation when outbound flight number is missing', () => {
       const invalidFlight = {
-        returnFlightNumber: 'FR5678',
+        returnFlightNumber: 'FR5678'
       }
 
       expect(() => v.parse(FlightInformationSchema, invalidFlight)).toThrow()
@@ -308,7 +308,7 @@ describe('Booking Schemas Validation', () => {
 
       flightNumbers.forEach((flightNumber) => {
         const flight = {
-          outboundFlightNumber: flightNumber,
+          outboundFlightNumber: flightNumber
         }
 
         const result = v.parse(FlightInformationSchema, flight)
@@ -319,7 +319,7 @@ describe('Booking Schemas Validation', () => {
     it('should validate when returnFlightNumber is undefined', () => {
       const flight = {
         outboundFlightNumber: 'FR1234',
-        returnFlightNumber: undefined,
+        returnFlightNumber: undefined
       }
 
       const result = v.parse(FlightInformationSchema, flight)
@@ -330,7 +330,7 @@ describe('Booking Schemas Validation', () => {
     it('should validate both flight numbers for return trip', () => {
       const returnTrip = {
         outboundFlightNumber: 'FR1234',
-        returnFlightNumber: 'FR5678',
+        returnFlightNumber: 'FR5678'
       }
 
       const result = v.parse(FlightInformationSchema, returnTrip)
@@ -344,7 +344,7 @@ describe('Booking Schemas Validation', () => {
     it('should provide custom error message for empty city', () => {
       const invalidAddress = {
         city: '',
-        isAirport: false,
+        isAirport: false
       }
 
       try {
@@ -358,7 +358,7 @@ describe('Booking Schemas Validation', () => {
       const invalidContact = {
         fullName: 'Test',
         email: 'invalid-email',
-        phone: '123',
+        phone: '123'
       }
 
       try {
@@ -372,7 +372,7 @@ describe('Booking Schemas Validation', () => {
       const invalidContact = {
         fullName: '',
         email: '',
-        phone: '',
+        phone: ''
       }
 
       try {
@@ -386,7 +386,7 @@ describe('Booking Schemas Validation', () => {
       const invalidCompany = {
         city: '',
         street: '',
-        zipCode: '',
+        zipCode: ''
       }
 
       try {

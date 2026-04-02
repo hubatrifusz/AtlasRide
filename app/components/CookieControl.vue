@@ -64,8 +64,8 @@ function animateCookieControl() {
         <UButton
           size="xl"
           variant="soft"
-          @click="denyCookiesClick()"
-          class="text-text-inverse">
+          class="text-text-inverse"
+          @click="denyCookiesClick()">
           Elutasítom
         </UButton>
         <UButton size="xl" variant="solid" @click="acceptCookiesClick()">

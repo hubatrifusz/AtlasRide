@@ -7,7 +7,7 @@ export const useBookingStore = defineStore('booking', () => {
       fullName: '',
       email: '',
       phone: '',
-      companyLocation: { city: '', street: '', zipCode: '' },
+      companyLocation: { city: '', street: '', zipCode: '' }
     },
     homeAddress: { city: '', street: '', zipCode: '', isAirport: false },
     passengerCount: 1,
@@ -15,18 +15,18 @@ export const useBookingStore = defineStore('booking', () => {
       city: '',
       street: '',
       zipCode: '',
-      isAirport: false,
+      isAirport: false
     },
     departureDateTime: { date: undefined, time: undefined },
     destinationLocation: {
       city: '',
       street: '',
       zipCode: '',
-      isAirport: false,
+      isAirport: false
     },
     returnInfo: { isReturn: false },
     flightInfo: { outboundFlightNumber: '', returnFlightNumber: '' },
-    comment: '',
+    comment: ''
   })
 
   const currentStep = ref<number>(0)
@@ -53,6 +53,6 @@ export const useBookingStore = defineStore('booking', () => {
     prevStep,
     form,
     airportInputCount,
-    isAirportTransfer,
+    isAirportTransfer
   }
 })

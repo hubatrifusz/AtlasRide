@@ -3,29 +3,29 @@ const bookingStore = useBookingStore()
 
 const airportStepperItems = ref([
   {
-    icon: 'i-lucide-map',
+    icon: 'i-lucide-map'
   },
   {
-    icon: 'i-lucide-tickets-plane',
+    icon: 'i-lucide-tickets-plane'
   },
   {
-    icon: 'i-lucide-user',
+    icon: 'i-lucide-user'
   },
   {
-    icon: 'i-lucide-badge-check',
-  },
+    icon: 'i-lucide-badge-check'
+  }
 ])
 
 const personalStepperItems = ref([
   {
-    icon: 'i-lucide-map',
+    icon: 'i-lucide-map'
   },
   {
-    icon: 'i-lucide-user',
+    icon: 'i-lucide-user'
   },
   {
-    icon: 'i-lucide-badge-check',
-  },
+    icon: 'i-lucide-badge-check'
+  }
 ])
 
 const stepperItems = computed(() => {
@@ -41,8 +41,8 @@ watchEffect(() => {
 
 <template>
   <UStepper
+    v-model="bookingStore.currentStep"
     disabled
     :items="stepperItems"
-    v-model="bookingStore.currentStep"
     class="w-full" />
 </template>

@@ -7,8 +7,8 @@ export function useBooking() {
         'https://atlas-ride-backend.vercel.app/api',
         {
           method: 'POST',
-          body: form,
-        },
+          body: form
+        }
       )
 
       return response
@@ -32,8 +32,8 @@ export function useBooking() {
         'https://atlas-ride-backend.vercel.app/api/health-check',
         {
           method: 'POST',
-          body: form,
-        },
+          body: form
+        }
       )
 
       return response
@@ -46,6 +46,6 @@ export function useBooking() {
   return {
     postNewBooking,
     getAllBooking,
-    postHealthCheck,
+    postHealthCheck
   }
 }

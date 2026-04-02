@@ -10,8 +10,8 @@ const mockPostNewBooking = vi.fn()
 vi.mock('../../app/utils/useBooking', () => ({
   useBooking: () => ({
     postNewBooking: mockPostNewBooking,
-    getAllBooking: vi.fn().mockResolvedValue([]),
-  }),
+    getAllBooking: vi.fn().mockResolvedValue([])
+  })
 }))
 
 describe('Booking Flow - Integration Tests', () => {
@@ -80,13 +80,13 @@ describe('Booking Flow - Integration Tests', () => {
         city: 'Budapest',
         street: 'Main St',
         zipCode: '1234',
-        isAirport: false,
+        isAirport: false
       }
       store.form.destinationLocation = {
         city: 'Vienna',
         street: 'Center St',
         zipCode: '1000',
-        isAirport: false,
+        isAirport: false
       }
 
       store.nextStep()
@@ -95,7 +95,7 @@ describe('Booking Flow - Integration Tests', () => {
       store.form.customer = {
         fullName: 'John Doe',
         email: 'john@example.com',
-        phone: '+36301234567',
+        phone: '+36301234567'
       }
 
       store.nextStep()
@@ -150,7 +150,7 @@ describe('Booking Flow - Integration Tests', () => {
         city: 'Budapest',
         street: '',
         zipCode: '',
-        isAirport: true,
+        isAirport: true
       }
 
       store.nextStep() // To flight info
@@ -158,7 +158,7 @@ describe('Booking Flow - Integration Tests', () => {
       // Add flight information
       store.form.flightInfo = {
         outboundFlightNumber: 'FR1234',
-        returnFlightNumber: '',
+        returnFlightNumber: ''
       }
 
       expect(store.form.flightInfo.outboundFlightNumber).toBe('FR1234')
@@ -247,7 +247,7 @@ describe('Booking Flow - Integration Tests', () => {
     it('should successfully submit booking with API call', async () => {
       mockPostNewBooking.mockResolvedValueOnce({
         success: true,
-        bookingId: '12345',
+        bookingId: '12345'
       })
 
       const store = useBookingStore()
@@ -258,34 +258,34 @@ describe('Booking Flow - Integration Tests', () => {
         customer: {
           fullName: 'Test User',
           email: 'test@example.com',
-          phone: '+36301234567',
+          phone: '+36301234567'
         },
         homeAddress: {
           city: '',
           street: '',
           zipCode: '',
-          isAirport: false,
+          isAirport: false
         },
         passengerCount: 2,
         departureLocation: {
           city: 'Budapest',
           street: '',
           zipCode: '',
-          isAirport: false,
+          isAirport: false
         },
         departureDateTime: { date: undefined, time: undefined },
         destinationLocation: {
           city: 'Vienna',
           street: '',
           zipCode: '',
-          isAirport: false,
+          isAirport: false
         },
         returnInfo: { isReturn: false },
         flightInfo: {
           outboundFlightNumber: '',
-          returnFlightNumber: '',
+          returnFlightNumber: ''
         },
-        comment: 'Test booking',
+        comment: 'Test booking'
       }
 
       const wrapper = mount(ActionButtons)
@@ -439,11 +439,11 @@ describe('Booking Flow - Integration Tests', () => {
       // Step 1: Fill travel details
       store.form.departureLocation = {
         city: 'Budapest',
-        isAirport: false,
+        isAirport: false
       }
       store.form.destinationLocation = {
         city: 'Vienna',
-        isAirport: false,
+        isAirport: false
       }
       store.form.passengerCount = 3
 
@@ -453,7 +453,7 @@ describe('Booking Flow - Integration Tests', () => {
       store.form.customer = {
         fullName: 'John Doe',
         email: 'john@example.com',
-        phone: '+36301234567',
+        phone: '+36301234567'
       }
       store.form.comment = 'Please be punctual'
 
@@ -472,7 +472,7 @@ describe('Booking Flow - Integration Tests', () => {
 
       store.form.returnInfo = {
         isReturn: true,
-        returnDateTime: { date: undefined, time: undefined },
+        returnDateTime: { date: undefined, time: undefined }
       }
 
       expect(store.form.returnInfo.isReturn).toBe(true)
@@ -502,7 +502,7 @@ describe('Booking Flow - Integration Tests', () => {
       store.form.customer = {
         fullName: '',
         email: '',
-        phone: '',
+        phone: ''
       }
 
       mockPostNewBooking.mockResolvedValueOnce({ success: true })

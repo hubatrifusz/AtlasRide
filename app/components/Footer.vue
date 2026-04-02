@@ -14,32 +14,32 @@ const columns: FooterColumn[] = [
       {
         icon: 'i-lucide-mail',
         label: 'info@atlasride.hu',
-        to: 'mailto:info@atlasride.hu',
+        to: 'mailto:info@atlasride.hu'
       },
       {
         icon: 'i-lucide-phone',
         label: '+36 70 600 5522',
-        to: 'tel:+36706005522',
+        to: 'tel:+36706005522'
       },
       {
         icon: 'i-lucide-facebook',
         label: 'Facebook',
         target: '_blank',
-        to: 'https://www.facebook.com/profile.php?id=61571633512337',
-      },
+        to: 'https://www.facebook.com/profile.php?id=61571633512337'
+      }
     ],
-    label: 'Elérhetőség',
+    label: 'Elérhetőség'
   },
   {
     children: [
       {
         icon: 'i-lucide-shield-half',
         label: 'Adatvédelmi tájékoztató',
-        to: '/privacyPolicy',
-      },
+        to: '/privacyPolicy'
+      }
     ],
-    label: 'Adatkezelés és biztonság',
-  },
+    label: 'Adatkezelés és biztonság'
+  }
 ]
 
 const analyticalCookiesValue = ref<boolean>(false)

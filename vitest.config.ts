@@ -15,13 +15,13 @@ export default defineVitestConfig({
         'tests/',
         '**/*.d.ts',
         '**/*.config.ts',
-        '**/mockData.ts',
-      ],
-    },
+        '**/mockData.ts'
+      ]
+    }
   },
   resolve: {
     alias: {
-      '~': fileURLToPath(new URL('./app', import.meta.url)),
-    },
-  },
+      '~': fileURLToPath(new URL('./app', import.meta.url))
+    }
+  }
 })

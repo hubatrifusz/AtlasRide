@@ -16,34 +16,34 @@ describe('useBookingStore - Enhanced Unit Tests', () => {
           fullName: '',
           email: '',
           phone: '',
-          companyLocation: { city: '', street: '', zipCode: '' },
+          companyLocation: { city: '', street: '', zipCode: '' }
         },
         homeAddress: {
           city: '',
           street: '',
           zipCode: '',
-          isAirport: false,
+          isAirport: false
         },
         passengerCount: 1,
         departureLocation: {
           city: '',
           street: '',
           zipCode: '',
-          isAirport: false,
+          isAirport: false
         },
         departureDateTime: { date: undefined, time: undefined },
         destinationLocation: {
           city: '',
           street: '',
           zipCode: '',
-          isAirport: false,
+          isAirport: false
         },
         returnInfo: { isReturn: false },
         flightInfo: {
           outboundFlightNumber: '',
-          returnFlightNumber: '',
+          returnFlightNumber: ''
         },
-        comment: '',
+        comment: ''
       })
     })
 
@@ -162,8 +162,8 @@ describe('useBookingStore - Enhanced Unit Tests', () => {
         companyLocation: {
           city: 'Budapest',
           street: 'Main St 1',
-          zipCode: '1234',
-        },
+          zipCode: '1234'
+        }
       }
 
       expect(store.form.customer.fullName).toBe('John Doe')
@@ -177,7 +177,7 @@ describe('useBookingStore - Enhanced Unit Tests', () => {
         city: 'Budapest',
         street: '',
         zipCode: '',
-        isAirport: true,
+        isAirport: true
       }
 
       expect(store.form.departureLocation.city).toBe('Budapest')
@@ -191,7 +191,7 @@ describe('useBookingStore - Enhanced Unit Tests', () => {
         city: 'Vienna',
         street: 'Airport Road',
         zipCode: '1000',
-        isAirport: true,
+        isAirport: true
       }
 
       expect(store.form.destinationLocation.city).toBe('Vienna')
@@ -211,7 +211,7 @@ describe('useBookingStore - Enhanced Unit Tests', () => {
 
       store.form.returnInfo = {
         isReturn: true,
-        returnDateTime: { date: undefined, time: undefined },
+        returnDateTime: { date: undefined, time: undefined }
       }
 
       expect(store.form.returnInfo.isReturn).toBe(true)

@@ -7,8 +7,8 @@ import { useBookingStore } from '../../../app/stores/useBookingStore'
 // Mock the useBooking composable
 vi.mock('../../../app/utils/useBooking', () => ({
   useBooking: () => ({
-    postNewBooking: vi.fn().mockResolvedValue({ success: true }),
-  }),
+    postNewBooking: vi.fn().mockResolvedValue({ success: true })
+  })
 }))
 
 describe('BookingActionButtons Component', () => {
@@ -136,13 +136,13 @@ describe('BookingActionButtons Component', () => {
         () =>
           new Promise((resolve) => {
             setTimeout(() => resolve({ success: true }), 100)
-          }),
+          })
       )
 
       vi.mock('~/utils/useBooking', () => ({
         useBooking: () => ({
-          postNewBooking: slowPostBooking,
-        }),
+          postNewBooking: slowPostBooking
+        })
       }))
 
       const wrapper = mount(ActionButtons)
@@ -174,8 +174,8 @@ describe('BookingActionButtons Component', () => {
 
       vi.mock('~/utils/useBooking', () => ({
         useBooking: () => ({
-          postNewBooking: failingPostBooking,
-        }),
+          postNewBooking: failingPostBooking
+        })
       }))
 
       const wrapper = mount(ActionButtons)

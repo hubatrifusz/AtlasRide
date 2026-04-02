@@ -18,15 +18,15 @@ const handleConfirmBooking = async () => {
       title: 'Sikeres ajánlatkérés!',
       description: 'Hamarosan felvesszük Önnel a kapcsolatot.',
       icon: 'i-lucide-circle-check',
-      color: 'primary',
+      color: 'primary'
     })
-  } catch (error) {
+  } catch {
     toast.add({
       title: 'Hiba történt!',
       description:
         'Sajnáljuk, de valami hiba történt az ajánlatkérés során. Kérjük, próbálja újra később.',
       icon: 'i-lucide-circle-x',
-      color: 'error',
+      color: 'error'
     })
   } finally {
     loading.value = false
@@ -66,7 +66,7 @@ const handleConfirmBooking = async () => {
   </div>
 
   <!-- Navigation Steps -->
-  <div v-else class="w-full max-w-4xl" id="action_buttons">
+  <div v-else id="action_buttons" class="w-full max-w-4xl">
     <div
       class="flex items-center justify-between gap-4 pt-8 border-t-2 border-main-700">
       <!-- Previous Button -->
