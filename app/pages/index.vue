@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <div class="bg-main-900">
     <UButton
@@ -15,5 +13,3 @@
     <HomePricesSection />
   </div>
 </template>
-
-<style scoped></style>
