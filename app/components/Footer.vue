@@ -34,7 +34,7 @@ const columns: FooterColumn[] = [
       {
         icon: 'i-lucide-shield-half',
         label: 'Adatvédelmi tájékoztató',
-        to: '/privacy_policy',
+        to: '/privacyPolicy',
       },
     ],
     label: 'Adatkezelés és biztonság',
