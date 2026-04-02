@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest';
-import { validateBooking } from '../../utils/validateBooking';
+import { validateBooking } from '../../../utils/validateBooking';
 
 const customer = {
   fullName: 'Test Name',
@@ -52,7 +52,7 @@ it('should be valid on a valid form', () => {
   expect(validateBooking(validBookingForm).success).toBe(true);
 });
 
-it('should be invalid if no location is airport, but flightInfo is filled', () => {
+it('should be invalid, if no location is airport, but flightInfo is filled', () => {
   expect(validateBooking(fullBookingForm).success).toBe(false);
 });
 
@@ -92,7 +92,7 @@ it('should be valid without a comment', () => {
   expect(validateBooking(bookingWithoutComment).success).toBe(true);
 });
 
-it('should be invalid if departure is airport, but outboundFLightNumber is not filled', () => {
+it('should be invalid, if departure is airport, but outboundFlightNumber is not filled', () => {
   const airportFormNoFlightNumber = {
     ...validBookingForm,
     departure: {
@@ -104,8 +104,8 @@ it('should be invalid if departure is airport, but outboundFLightNumber is not f
   expect(validateBooking(airportFormNoFlightNumber).success).toBe(false);
 });
 
-it('should be valid if departure is airport with outboundFLightNumber', () => {
-  const airportFormNoFlightNumber = {
+it('should be valid, if departure is airport with outboundFlightNumber', () => {
+  const bookingForm = {
     ...validBookingForm,
     departure: {
       location: airport,
@@ -116,10 +116,10 @@ it('should be valid if departure is airport with outboundFLightNumber', () => {
     },
   };
 
-  expect(validateBooking(airportFormNoFlightNumber).success).toBe(true);
+  expect(validateBooking(bookingForm).success).toBe(true);
 });
 
-it('should be invalid if departure is airport, but with inboundFLightNumber', () => {
+it('should be invalid, if departure is airport, but with inboundFlightNumber', () => {
   const bookingForm = {
     ...validBookingForm,
     departure: {
@@ -134,7 +134,7 @@ it('should be invalid if departure is airport, but with inboundFLightNumber', ()
   expect(validateBooking(bookingForm).success).toBe(false);
 });
 
-it('should be invalid if inboundFlightNumber is filled, without returnInfo', () => {
+it('should be invalid, if inboundFlightNumber is filled, without returnInfo', () => {
   const bookingForm = {
     ...validBookingForm,
     departure: {
@@ -150,11 +150,10 @@ it('should be invalid if inboundFlightNumber is filled, without returnInfo', () 
 
   const { returnInfo: removedReturnInfo, ...bookingFormWithoutReturnInfo } = bookingForm;
 
-  console.log(validateBooking(bookingFormWithoutReturnInfo));
   expect(validateBooking(bookingFormWithoutReturnInfo).success).toBe(false);
 });
 
-it('should be invalid if destination is an airport, and returnInfo is filled, but inboundFlight is not filled', () => {
+it('should be invalid, if destination is an airport, and returnInfo is filled, but inboundFlight is not filled', () => {
   const bookingForm = {
     ...validBookingForm,
     destination: {
@@ -166,7 +165,17 @@ it('should be invalid if destination is an airport, and returnInfo is filled, bu
     },
   };
 
-  console.log(validateBooking(bookingForm));
-
   expect(validateBooking(bookingForm).success).toBe(false);
+});
+
+it('should be valid without street and zipCode', () => {
+  const bookingForm = {
+    ...validBookingForm,
+    departure: {
+      location: { city: 'Budapest' },
+      dateTime,
+    },
+  };
+
+  expect(validateBooking(bookingForm).success).toBe(true);
 });
