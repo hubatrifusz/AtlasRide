@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { CompanyLocationSchema, ContactDataSchema } from '~/schemas/booking';
-import type { ContactInfo } from '~/types/bookingForm';
-import * as v from 'valibot';
+import { CompanyLocationSchema, ContactDataSchema } from '~/schemas/booking'
+import type { ContactInfo } from '~/types/bookingForm'
+import * as v from 'valibot'
 
-const bookingStore = useBookingStore();
+const bookingStore = useBookingStore()
 
 const tabItems = [
   {
@@ -14,102 +14,124 @@ const tabItems = [
     label: 'Cég',
     icon: 'i-lucide-building-2',
   },
-];
+]
 
 const dynamicSchema = computed(() => {
   if (active.value === '1') {
     return v.object({
       ...ContactDataSchema.entries,
       companyLocation: CompanyLocationSchema,
-    });
+    })
   }
 
   return v.object({
     ...ContactDataSchema.entries,
     companyLocation: v.optional(v.any()),
-  });
-});
+  })
+})
 
 const contactData = ref<ContactInfo>({
   fullName: '',
   email: '',
   phone: '',
   companyLocation: { city: '', zipCode: '', street: '' },
-});
+})
 
-const comment = ref<string>('');
+const comment = ref<string>('')
 
-const _activeState = ref('0');
+const _activeState = ref('0')
 
 const active = computed({
   get() {
-    const hasLocationData = !!(contactData.value.companyLocation?.city || contactData.value.companyLocation?.zipCode || contactData.value.companyLocation?.street);
+    const hasLocationData = !!(
+      contactData.value.companyLocation?.city ||
+      contactData.value.companyLocation?.zipCode ||
+      contactData.value.companyLocation?.street
+    )
 
-    return hasLocationData ? '1' : _activeState.value;
+    return hasLocationData ? '1' : _activeState.value
   },
   set(newValue) {
-    _activeState.value = newValue;
+    _activeState.value = newValue
 
     if (newValue === '0') {
-      contactData.value.companyLocation = { city: '', zipCode: '', street: '' };
+      contactData.value.companyLocation = {
+        city: '',
+        zipCode: '',
+        street: '',
+      }
     }
   },
-});
+})
 
 function saveFormData() {
   if (bookingStore.form) {
-    bookingStore.form.customer = contactData.value;
-    bookingStore.form.comment = comment.value;
+    bookingStore.form.customer = contactData.value
+    bookingStore.form.comment = comment.value
   }
 }
 
 function initializeInputData() {
   if (bookingStore.form) {
-    contactData.value = bookingStore.form.customer;
-    comment.value = bookingStore.form.comment;
+    contactData.value = bookingStore.form.customer
+    comment.value = bookingStore.form.comment
   }
 }
 
-const form = ref();
+const form = ref()
 
 const submitForm = async () => {
   try {
-    window.scrollTo(0, 0);
-    await form.value.validate();
-    saveFormData();
-    bookingStore.nextStep();
+    window.scrollTo(0, 0)
+    await form.value.validate()
+    saveFormData()
+    bookingStore.nextStep()
   } catch {
-    console.log(form.value.validate());
-    window.scrollTo(0, 0);
+    console.log(form.value.validate())
+    window.scrollTo(0, 0)
   }
-};
+}
 
 defineExpose({
   submitForm,
-});
+})
 
 onMounted(() => {
-  initializeInputData();
-});
+  initializeInputData()
+})
 </script>
 
 <template>
   <div class="w-full max-w-2xl mx-auto">
     <!-- Header -->
     <div class="text-center mb-10">
-      <h2 class="text-3xl font-bold text-text-primary mb-2">Kapcsolattartó adatok</h2>
-      <p class="text-text-secondary">Adja meg az elérhetőségeit a foglalás véglegesítéséhez</p>
+      <h2 class="text-3xl font-bold text-text-primary mb-2">
+        Kapcsolattartó adatok
+      </h2>
+      <p class="text-text-secondary">
+        Adja meg az elérhetőségeit a foglalás véglegesítéséhez
+      </p>
     </div>
 
     <!-- User Type Selector -->
     <div class="mb-8">
-      <UTabs v-model="active" color="primary" :items="tabItems" class="w-full" />
+      <UTabs
+        v-model="active"
+        color="primary"
+        :items="tabItems"
+        class="w-full" />
     </div>
 
-    <UForm ref="form" class="flex flex-col gap-6" :schema="dynamicSchema" :state="contactData">
+    <UForm
+      ref="form"
+      class="flex flex-col gap-6"
+      :schema="dynamicSchema"
+      :state="contactData">
       <!-- Contact Information -->
-      <fieldset class="border-2 border-main-600 bg-main-800/50 rounded-xl p-6 hover:border-accent-500 transition-colors duration-300">
-        <legend class="font-semibold text-lg text-accent-500 px-3 flex items-center gap-2 mb-1">
+      <fieldset
+        class="border-2 border-main-600 bg-main-800/50 rounded-xl p-6 hover:border-accent-500 transition-colors duration-300">
+        <legend
+          class="font-semibold text-lg text-accent-500 px-3 flex items-center gap-2 mb-1">
           <UIcon name="i-lucide-contact" class="text-xl" />
           Elérhetőségek
         </legend>
@@ -121,7 +143,11 @@ onMounted(() => {
                 <span>Teljes név</span>
               </div>
             </template>
-            <UInput v-model="contactData.fullName" size="lg" placeholder="Teljes név" class="w-full" />
+            <UInput
+              v-model="contactData.fullName"
+              size="lg"
+              placeholder="Teljes név"
+              class="w-full" />
           </UFormField>
 
           <UFormField name="phone">
@@ -131,7 +157,11 @@ onMounted(() => {
                 <span>Telefonszám</span>
               </div>
             </template>
-            <UInput v-model="contactData.phone" size="lg" placeholder="+36 (XX) XXX-XXXX" class="w-full" />
+            <UInput
+              v-model="contactData.phone"
+              size="lg"
+              placeholder="+36 (XX) XXX-XXXX"
+              class="w-full" />
           </UFormField>
 
           <UFormField name="email">
@@ -141,14 +171,21 @@ onMounted(() => {
                 <span>Email cím</span>
               </div>
             </template>
-            <UInput v-model="contactData.email" size="lg" placeholder="pelda@email.com" class="w-full" />
+            <UInput
+              v-model="contactData.email"
+              size="lg"
+              placeholder="pelda@email.com"
+              class="w-full" />
           </UFormField>
         </div>
       </fieldset>
 
       <!-- Company Location (only for companies) -->
-      <fieldset v-if="active === '1'" class="border-2 border-main-600 bg-main-800/50 rounded-xl p-6 hover:border-accent-500 transition-colors duration-300">
-        <legend class="font-semibold text-lg text-accent-500 px-3 flex items-center gap-2 mb-1">
+      <fieldset
+        v-if="active === '1'"
+        class="border-2 border-main-600 bg-main-800/50 rounded-xl p-6 hover:border-accent-500 transition-colors duration-300">
+        <legend
+          class="font-semibold text-lg text-accent-500 px-3 flex items-center gap-2 mb-1">
           <UIcon name="i-lucide-building-2" class="text-xl" />
           Telephely címe
         </legend>
@@ -161,7 +198,11 @@ onMounted(() => {
                   <span>Irányítószám</span>
                 </div>
               </template>
-              <UInput v-model="contactData.companyLocation!.zipCode" size="lg" placeholder="1234" class="w-full" />
+              <UInput
+                v-model="contactData.companyLocation!.zipCode"
+                size="lg"
+                placeholder="1234"
+                class="w-full" />
             </UFormField>
 
             <UFormField name="companyLocation.city" class="sm:col-span-2">
@@ -171,7 +212,11 @@ onMounted(() => {
                   <span>Település</span>
                 </div>
               </template>
-              <UInput v-model="contactData.companyLocation!.city" size="lg" placeholder="Település neve" class="w-full" />
+              <UInput
+                v-model="contactData.companyLocation!.city"
+                size="lg"
+                placeholder="Település neve"
+                class="w-full" />
             </UFormField>
           </div>
 
@@ -182,14 +227,20 @@ onMounted(() => {
                 <span>Utca, házszám</span>
               </div>
             </template>
-            <UInput v-model="contactData.companyLocation!.street" size="lg" placeholder="Példa utca 12." class="w-full" />
+            <UInput
+              v-model="contactData.companyLocation!.street"
+              size="lg"
+              placeholder="Példa utca 12."
+              class="w-full" />
           </UFormField>
         </div>
       </fieldset>
 
       <!-- Additional Comments -->
-      <fieldset class="border-2 border-main-600 bg-main-800/50 rounded-xl p-6 hover:border-accent-500 transition-colors duration-300">
-        <legend class="font-semibold text-lg text-accent-500 px-3 flex items-center gap-2 mb-1">
+      <fieldset
+        class="border-2 border-main-600 bg-main-800/50 rounded-xl p-6 hover:border-accent-500 transition-colors duration-300">
+        <legend
+          class="font-semibold text-lg text-accent-500 px-3 flex items-center gap-2 mb-1">
           <UIcon name="i-lucide-message-square" class="text-xl" />
           Megjegyzés
         </legend>
@@ -198,10 +249,19 @@ onMounted(() => {
             <template #label>
               <div class="flex items-center gap-2 text-text-secondary mb-2">
                 <UIcon name="i-lucide-file-text" class="text-accent-400" />
-                <span class="text-sm">Bármilyen egyéb kérés vagy fontos információ (opcionális)</span>
+                <span class="text-sm"
+                  >Bármilyen egyéb kérés vagy fontos információ
+                  (opcionális)</span
+                >
               </div>
             </template>
-            <UTextarea v-model="comment" placeholder="Pl. érkezési idő pontosítása, különleges igények..." :rows="5" size="lg" autoresize class="w-full" />
+            <UTextarea
+              v-model="comment"
+              placeholder="Pl. érkezési idő pontosítása, különleges igények..."
+              :rows="5"
+              size="lg"
+              autoresize
+              class="w-full" />
           </UFormField>
         </div>
       </fieldset>
@@ -212,7 +272,9 @@ onMounted(() => {
       <div class="flex items-start gap-3">
         <UIcon name="i-lucide-info" class="text-accent-400 mt-0.5 shrink-0" />
         <p class="text-text-secondary text-sm">
-          A megadott adatokat kizárólag a foglalás lebonyolításához és a kapcsolattartáshoz használjuk fel. Az adatkezelési tájékoztatót az oldal alján találja.
+          A megadott adatokat kizárólag a foglalás lebonyolításához és a
+          kapcsolattartáshoz használjuk fel. Az adatkezelési tájékoztatót az
+          oldal alján találja.
         </p>
       </div>
     </div>

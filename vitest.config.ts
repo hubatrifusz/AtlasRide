@@ -1,5 +1,5 @@
-import { defineVitestConfig } from '@nuxt/test-utils/config';
-import { fileURLToPath, URL } from 'node:url';
+import { defineVitestConfig } from '@nuxt/test-utils/config'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineVitestConfig({
   test: {
@@ -10,7 +10,13 @@ export default defineVitestConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       include: ['app/**/*.{js,ts,vue}'],
-      exclude: ['node_modules/', 'tests/', '**/*.d.ts', '**/*.config.ts', '**/mockData.ts'],
+      exclude: [
+        'node_modules/',
+        'tests/',
+        '**/*.d.ts',
+        '**/*.config.ts',
+        '**/mockData.ts',
+      ],
     },
   },
   resolve: {
@@ -18,4 +24,4 @@ export default defineVitestConfig({
       '~': fileURLToPath(new URL('./app', import.meta.url)),
     },
   },
-});
+})

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const bookingStore = useBookingStore();
+const bookingStore = useBookingStore()
 
 const airportStepperItems = ref([
   {
@@ -14,7 +14,7 @@ const airportStepperItems = ref([
   {
     icon: 'i-lucide-badge-check',
   },
-]);
+])
 
 const personalStepperItems = ref([
   {
@@ -26,17 +26,23 @@ const personalStepperItems = ref([
   {
     icon: 'i-lucide-badge-check',
   },
-]);
+])
 
 const stepperItems = computed(() => {
-  return bookingStore.isAirportTransfer ? airportStepperItems.value : personalStepperItems.value;
-});
+  return bookingStore.isAirportTransfer
+    ? airportStepperItems.value
+    : personalStepperItems.value
+})
 
 watchEffect(() => {
-  bookingStore.stepCount = stepperItems.value?.length ?? 0;
-});
+  bookingStore.stepCount = stepperItems.value?.length ?? 0
+})
 </script>
 
 <template>
-  <UStepper disabled :items="stepperItems" v-model="bookingStore.currentStep" class="w-full" />
+  <UStepper
+    disabled
+    :items="stepperItems"
+    v-model="bookingStore.currentStep"
+    class="w-full" />
 </template>

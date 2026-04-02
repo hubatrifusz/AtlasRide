@@ -1,44 +1,54 @@
 <script setup lang="ts">
-const bookingStore = useBookingStore();
-const toast = useToast();
+const bookingStore = useBookingStore()
+const toast = useToast()
 
-const { postNewBooking } = useBooking();
+const { postNewBooking } = useBooking()
 
-const emit = defineEmits(['submitForm']);
+const emit = defineEmits(['submitForm'])
 
-const loading = ref<boolean>(false);
+const loading = ref<boolean>(false)
 
 const handleConfirmBooking = async () => {
-  loading.value = true;
+  loading.value = true
   try {
-    await postNewBooking(bookingStore.form);
+    await postNewBooking(bookingStore.form)
 
-    await navigateTo('/');
+    await navigateTo('/')
     toast.add({
       title: 'Sikeres ajánlatkérés!',
       description: 'Hamarosan felvesszük Önnel a kapcsolatot.',
       icon: 'i-lucide-circle-check',
       color: 'primary',
-    });
+    })
   } catch (error) {
     toast.add({
       title: 'Hiba történt!',
-      description: 'Sajnáljuk, de valami hiba történt az ajánlatkérés során. Kérjük, próbálja újra később.',
+      description:
+        'Sajnáljuk, de valami hiba történt az ajánlatkérés során. Kérjük, próbálja újra később.',
       icon: 'i-lucide-circle-x',
       color: 'error',
-    });
+    })
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-};
+}
 </script>
 
 <template>
   <!-- Final Confirmation Step -->
-  <div v-if="bookingStore.currentStep === bookingStore.stepCount - 1" class="w-full max-w-4xl">
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8">
+  <div
+    v-if="bookingStore.currentStep === bookingStore.stepCount - 1"
+    class="w-full max-w-4xl">
+    <div
+      class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8">
       <!-- Back Button -->
-      <UButton color="neutral" variant="soft" size="xl" icon="i-lucide-arrow-left" class="order-2 sm:order-1 w-full sm:w-auto" @click="bookingStore.prevStep()">
+      <UButton
+        color="neutral"
+        variant="soft"
+        size="xl"
+        icon="i-lucide-arrow-left"
+        class="order-2 sm:order-1 w-full sm:w-auto"
+        @click="bookingStore.prevStep()">
         <span class="hidden sm:inline">Vissza</span>
       </UButton>
 
@@ -49,8 +59,7 @@ const handleConfirmBooking = async () => {
         trailing-icon="i-lucide-circle-check"
         class="order-1 sm:order-2 px-8 py-6 text-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
         :loading="loading"
-        @click="handleConfirmBooking()"
-      >
+        @click="handleConfirmBooking()">
         Megerősítés
       </UButton>
     </div>
@@ -58,15 +67,28 @@ const handleConfirmBooking = async () => {
 
   <!-- Navigation Steps -->
   <div v-else class="w-full max-w-4xl" id="action_buttons">
-    <div class="flex items-center justify-between gap-4 pt-8 border-t-2 border-main-700">
+    <div
+      class="flex items-center justify-between gap-4 pt-8 border-t-2 border-main-700">
       <!-- Previous Button -->
-      <UButton v-if="bookingStore.currentStep != 0" color="neutral" variant="soft" size="xl" icon="i-lucide-arrow-left" class="px-6" @click="bookingStore.prevStep()">
+      <UButton
+        v-if="bookingStore.currentStep != 0"
+        color="neutral"
+        variant="soft"
+        size="xl"
+        icon="i-lucide-arrow-left"
+        class="px-6"
+        @click="bookingStore.prevStep()">
         Vissza
       </UButton>
       <div v-else></div>
 
       <!-- Next Button -->
-      <UButton color="primary" size="xl" trailing-icon="i-lucide-arrow-right" class="px-8 shadow-md hover:shadow-lg transition-all duration-300" @click="emit('submitForm')">
+      <UButton
+        color="primary"
+        size="xl"
+        trailing-icon="i-lucide-arrow-right"
+        class="px-8 shadow-md hover:shadow-lg transition-all duration-300"
+        @click="emit('submitForm')">
         Következő
       </UButton>
     </div>

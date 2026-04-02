@@ -8,10 +8,10 @@
 </template>
 
 <script setup>
-import { hu } from '@nuxt/ui/locale';
+import { hu } from '@nuxt/ui/locale'
 
-import { useCookieConsent } from '~/composables/useCookieConsent';
+import { useCookieConsent } from '~/composables/useCookieConsent'
 
-const { initCookies } = useCookieConsent();
-initCookies();
+const { initCookies } = useCookieConsent()
+initCookies()
 </script>

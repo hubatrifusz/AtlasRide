@@ -1,7 +1,7 @@
-import sharedConfig from '@repo/eslint-config';
-import vuePlugin from 'eslint-plugin-vue';
-import globals from 'globals';
-import vueParser from 'vue-eslint-parser';
+import sharedConfig from '@repo/eslint-config'
+import vuePlugin from 'eslint-plugin-vue'
+import globals from 'globals'
+import vueParser from 'vue-eslint-parser'
 
 export default [
   ...sharedConfig,
@@ -33,4 +33,4 @@ export default [
       'vue/no-unused-vars': 'error',
     },
   },
-];
+]

@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import type { FooterColumn } from '@nuxt/ui';
+import type { FooterColumn } from '@nuxt/ui'
 
-import { watch, onMounted } from 'vue';
+import { watch, onMounted } from 'vue'
 
-import { useCookieConsent } from '~/composables/useCookieConsent';
+import { useCookieConsent } from '~/composables/useCookieConsent'
 
-const { acceptCookies, denyAllCookies, getCookieConsentValue } = useCookieConsent();
+const { acceptCookies, denyAllCookies, getCookieConsentValue } =
+  useCookieConsent()
 
 const columns: FooterColumn[] = [
   {
@@ -39,41 +40,43 @@ const columns: FooterColumn[] = [
     ],
     label: 'Adatkezelés és biztonság',
   },
-];
+]
 
-const analyticalCookiesValue = ref<boolean>(false);
+const analyticalCookiesValue = ref<boolean>(false)
 
 function setConsentValue() {
-  const consentValue = getCookieConsentValue();
+  const consentValue = getCookieConsentValue()
   if (consentValue === 'denied') {
-    analyticalCookiesValue.value = false;
+    analyticalCookiesValue.value = false
   } else if (consentValue === 'granted') {
-    analyticalCookiesValue.value = true;
+    analyticalCookiesValue.value = true
   }
 }
 
 onMounted(() => {
-  setConsentValue();
-});
+  setConsentValue()
+})
 
 watch(analyticalCookiesValue, async (newValue) => {
   if (newValue === true) {
-    acceptCookies();
+    acceptCookies()
   } else if (newValue === false) {
-    denyAllCookies();
+    denyAllCookies()
   }
-});
+})
 
 function updateConsentValues() {
-  setConsentValue();
-};
+  setConsentValue()
+}
 </script>
 
 <template>
   <UFooter class="pt-8 px-6 z-101 relative bg-main-800">
     <template #bottom>
       <div class="w-full flex flex-row justify-between">
-        <p class="text-muted text-sm">Copyright © {{ new Date().getFullYear() }} Atlas Ride</p>
+        <p class="text-muted text-sm">
+          Copyright © {{ new Date().getFullYear() }} Atlas Ride
+        </p>
         <p class="text-muted text-sm">v.2.0.7.</p>
       </div>
     </template>
@@ -85,18 +88,35 @@ function updateConsentValues() {
             <UModal
               :dismissible="false"
               title="Süti (Cookie) beállítások"
-              description="Weboldalunk a működéshez elengedhetetlen sütiket használ. A felhasználói élmény javítása érdekében szeretnénk statisztikai (Google Analytics) sütiket is használni, de ehhez a hozzájárulása szükséges."
-            >
-              <UButton icon="i-lucide-cookie" variant="outline" color="neutral" class="text-muted" @click="updateConsentValues">Süti beállítások</UButton>
+              description="Weboldalunk a működéshez elengedhetetlen sütiket használ. A felhasználói élmény javítása érdekében szeretnénk statisztikai (Google Analytics) sütiket is használni, de ehhez a hozzájárulása szükséges.">
+              <UButton
+                icon="i-lucide-cookie"
+                variant="outline"
+                color="neutral"
+                class="text-muted"
+                @click="updateConsentValues"
+                >Süti beállítások</UButton
+              >
 
               <template #body>
-                <USwitch label="Feltétlenül szükséges sütik" default-value disabled color="neutral" />
+                <USwitch
+                  label="Feltétlenül szükséges sütik"
+                  default-value
+                  disabled
+                  color="neutral" />
                 <p class="text-sm text-muted pl-4 p-2">
-                  Ezek a sütik elengedhetetlenek a weboldal megfelelő működéséhez és biztonságához. Ezek nem tárolnak személyes azonosításra alkalmas adatokat.
+                  Ezek a sütik elengedhetetlenek a weboldal megfelelő
+                  működéséhez és biztonságához. Ezek nem tárolnak személyes
+                  azonosításra alkalmas adatokat.
                 </p>
                 <br />
-                <USwitch v-model="analyticalCookiesValue" label="Statisztikai sütik" />
-                <p class="text-sm text-muted pl-4 p-2">Ezek a sütik segítenek nekünk megérteni, hogyan használják látogatóink a weboldalt.</p>
+                <USwitch
+                  v-model="analyticalCookiesValue"
+                  label="Statisztikai sütik" />
+                <p class="text-sm text-muted pl-4 p-2">
+                  Ezek a sütik segítenek nekünk megérteni, hogyan használják
+                  látogatóink a weboldalt.
+                </p>
               </template>
             </UModal>
           </div>
