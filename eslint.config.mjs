@@ -5,22 +5,37 @@ import globals from 'globals'
 import vuePlugin from 'eslint-plugin-vue'
 import vueParser from 'vue-eslint-parser'
 
-export default withNuxt({
+export default withNuxt(
+  // Ignore patterns (replaces .eslintignore for flat config)
+  {
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      '.nuxt/**',
+      '.output/**',
+      'coverage/**',
+      'public/**',
+      '*.min.js',
+      '.git/**',
+    ],
+  },
+  {
   languageOptions: {
     globals: {
       ...globals.browser,
       ...globals.node,
-      ref: 'readonly'
+      ref: 'readonly',
     },
     parser: vueParser,
     parserOptions: {
       ecmaVersion: 'latest',
       parser: '@typescript-eslint/parser',
-      sourceType: 'module'
-    }
+      sourceType: 'module',
+    },
   },
   plugins: {
-    vue: vuePlugin
+    vue: vuePlugin,
   },
   rules: {
     'no-console': 'warn',
@@ -38,11 +53,11 @@ export default withNuxt({
           'OTHER_DIRECTIVES',
           'OTHER_ATTR',
           'EVENTS',
-          'CONTENT'
+          'CONTENT',
         ],
-        alphabetical: false
-      }
+        alphabetical: false,
+      },
     ],
-    'vue/multi-word-component-names': 'off'
-  }
+    'vue/multi-word-component-names': 'off',
+  },
 }).append(eslintConfigPrettier)

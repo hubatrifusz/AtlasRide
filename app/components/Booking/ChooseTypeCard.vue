@@ -2,7 +2,7 @@
 const props = defineProps({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  buttonText: { type: String, required: true }
+  buttonText: { type: String, required: true },
 })
 </script>
 

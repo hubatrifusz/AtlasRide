@@ -18,7 +18,7 @@ const handleConfirmBooking = async () => {
       title: 'Sikeres ajánlatkérés!',
       description: 'Hamarosan felvesszük Önnel a kapcsolatot.',
       icon: 'i-lucide-circle-check',
-      color: 'primary'
+      color: 'primary',
     })
   } catch {
     toast.add({
@@ -26,7 +26,7 @@ const handleConfirmBooking = async () => {
       description:
         'Sajnáljuk, de valami hiba történt az ajánlatkérés során. Kérjük, próbálja újra később.',
       icon: 'i-lucide-circle-x',
-      color: 'error'
+      color: 'error',
     })
   } finally {
     loading.value = false

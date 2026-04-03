@@ -4,13 +4,13 @@ export const AddressSchema = v.object({
   city: v.pipe(v.string(), v.nonEmpty('Kötelező')),
   street: v.optional(v.string()),
   zipCode: v.optional(v.string()),
-  isAirport: v.pipe(v.boolean())
+  isAirport: v.pipe(v.boolean()),
 })
 
 export const CompanyLocationSchema = v.object({
   city: v.pipe(v.string(), v.nonEmpty('Kötelező kitölteni')),
   street: v.pipe(v.string(), v.nonEmpty('Kötelező kitölteni')),
-  zipCode: v.pipe(v.string(), v.nonEmpty('Kötelező kitölteni'))
+  zipCode: v.pipe(v.string(), v.nonEmpty('Kötelező kitölteni')),
 })
 
 export const ContactDataSchema = v.object({
@@ -18,12 +18,12 @@ export const ContactDataSchema = v.object({
   email: v.pipe(
     v.string(),
     v.nonEmpty('Kötelező kitölteni'),
-    v.email('Valódi email címet adjon meg')
+    v.email('Valódi email címet adjon meg'),
   ),
-  phone: v.pipe(v.string(), v.nonEmpty('Kötelező kitölteni'))
+  phone: v.pipe(v.string(), v.nonEmpty('Kötelező kitölteni')),
 })
 
 export const FlightInformationSchema = v.object({
   outboundFlightNumber: v.pipe(v.string(), v.nonEmpty('Járatszám kötelező')),
-  returnFlightNumber: v.optional(v.string())
+  returnFlightNumber: v.optional(v.string()),
 })

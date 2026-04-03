@@ -8,25 +8,25 @@ const bookingStore = useBookingStore()
 const tabItems = [
   {
     label: 'Magánszemély',
-    icon: 'i-lucide-user'
+    icon: 'i-lucide-user',
   },
   {
     label: 'Cég',
-    icon: 'i-lucide-building-2'
-  }
+    icon: 'i-lucide-building-2',
+  },
 ]
 
 const dynamicSchema = computed(() => {
   if (active.value === '1') {
     return v.object({
       ...ContactDataSchema.entries,
-      companyLocation: CompanyLocationSchema
+      companyLocation: CompanyLocationSchema,
     })
   }
 
   return v.object({
     ...ContactDataSchema.entries,
-    companyLocation: v.optional(v.any())
+    companyLocation: v.optional(v.any()),
   })
 })
 
@@ -34,7 +34,7 @@ const contactData = ref<ContactInfo>({
   fullName: '',
   email: '',
   phone: '',
-  companyLocation: { city: '', zipCode: '', street: '' }
+  companyLocation: { city: '', zipCode: '', street: '' },
 })
 
 const comment = ref<string>('')
@@ -58,10 +58,10 @@ const active = computed({
       contactData.value.companyLocation = {
         city: '',
         zipCode: '',
-        street: ''
+        street: '',
       }
     }
-  }
+  },
 })
 
 function saveFormData() {
@@ -92,7 +92,7 @@ const submitForm = async () => {
 }
 
 defineExpose({
-  submitForm
+  submitForm,
 })
 
 onMounted(() => {

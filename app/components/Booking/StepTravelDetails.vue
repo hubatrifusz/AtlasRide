@@ -8,41 +8,41 @@ const bookingStore = useBookingStore()
 
 const TravelDetailsSchema = v.object({
   departureLocation: AddressSchema,
-  destinationLocation: AddressSchema
+  destinationLocation: AddressSchema,
 })
 
 const airports = ref([
   {
     label: 'Budapest (BUD) - Liszt Ferenc Nemzetközi',
     value: 'BUD',
-    city: 'Budapest'
+    city: 'Budapest',
   },
   { label: 'Bécs (VIE) - Schwechati Repülőtér', value: 'VIE', city: 'Bécs' },
   {
     label: 'Debrecen (DEB) - Nemzetközi Repülőtér',
     value: 'DEB',
-    city: 'Debrecen'
+    city: 'Debrecen',
   },
   {
     label: 'Pozsony (BTS) - M. R. Štefánik Repülőtér',
     value: 'BTS',
-    city: 'Pozsony'
+    city: 'Pozsony',
   },
   {
     label: 'Kassa (KSC) - Nemzetközi Repülőtér',
     value: 'KSC',
-    city: 'Kassa'
+    city: 'Kassa',
   },
   {
     label: 'Temesvár (TSR) - Traian Vuia Repülőtér',
     value: 'TSR',
-    city: 'Temesvár'
+    city: 'Temesvár',
   },
   {
     label: 'Belgrád (BEG) - Nikola Tesla Repülőtér',
     value: 'BEG',
-    city: 'Belgrád'
-  }
+    city: 'Belgrád',
+  },
 ])
 
 const departureDate = ref<CalendarDate>()
@@ -51,7 +51,7 @@ const departureTime = ref<Time>()
 const departureDateTime = computed(() => {
   return {
     date: departureDate.value,
-    time: departureTime.value
+    time: departureTime.value,
   }
 })
 
@@ -67,16 +67,16 @@ const validatedReturnInfo = computed(() => {
       isReturn: isReturn.value,
       returnDateTime: {
         date: returnDate.value,
-        time: returnTime.value
-      }
+        time: returnTime.value,
+      },
     }
   } else {
     return {
       isReturn: false,
       returnDateTime: {
         date: undefined,
-        time: undefined
-      }
+        time: undefined,
+      },
     }
   }
 })
@@ -137,14 +137,14 @@ const state = reactive<{
     city: '',
     street: '',
     zipCode: '',
-    isAirport: false
+    isAirport: false,
   },
   destinationLocation: {
     city: '',
     street: '',
     zipCode: '',
-    isAirport: false
-  }
+    isAirport: false,
+  },
 })
 
 const form = ref()
@@ -161,7 +161,7 @@ const submitForm = async () => {
 }
 
 defineExpose({
-  submitForm
+  submitForm,
 })
 
 onMounted(() => {

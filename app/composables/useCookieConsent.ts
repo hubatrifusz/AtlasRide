@@ -1,7 +1,7 @@
 export function useCookieConsent() {
   const cookieConsent = useCookie('cookie-consent', {
     maxAge: 60 * 60 * 24 * 30 * 6,
-    sameSite: 'lax'
+    sameSite: 'lax',
   })
   const { gtag } = useGtag()
 
@@ -10,7 +10,7 @@ export function useCookieConsent() {
       ad_user_data: 'granted',
       ad_personalization: 'granted',
       ad_storage: 'granted',
-      analytics_storage: 'granted'
+      analytics_storage: 'granted',
     })
     cookieConsent.value = 'granted'
   }
@@ -20,7 +20,7 @@ export function useCookieConsent() {
       ad_user_data: 'denied',
       ad_personalization: 'denied',
       ad_storage: 'denied',
-      analytics_storage: 'denied'
+      analytics_storage: 'denied',
     })
     cookieConsent.value = 'denied'
   }
@@ -41,6 +41,6 @@ export function useCookieConsent() {
     acceptCookies,
     denyAllCookies,
     initCookies,
-    getCookieConsentValue
+    getCookieConsentValue,
   }
 }

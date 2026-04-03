@@ -10,12 +10,12 @@ const dynamicSchema = computed(() => {
     return v.object({
       outboundFlightNumber: v.pipe(
         v.string(),
-        v.nonEmpty('Járatszám kötelező')
+        v.nonEmpty('Járatszám kötelező'),
       ),
       returnFlightNumber: v.pipe(
         v.string(),
-        v.nonEmpty('Vissza járat száma kötelező')
-      )
+        v.nonEmpty('Vissza járat száma kötelező'),
+      ),
     })
   }
   return FlightInformationSchema
@@ -23,11 +23,11 @@ const dynamicSchema = computed(() => {
 
 const flightData = ref<FlightInfo>({
   outboundFlightNumber: '',
-  returnFlightNumber: ''
+  returnFlightNumber: '',
 })
 
 const isReturnTrip = computed(
-  () => bookingStore.form?.returnInfo.isReturn || false
+  () => bookingStore.form?.returnInfo.isReturn || false,
 )
 
 function saveFormData() {
@@ -56,7 +56,7 @@ const submitForm = async () => {
 }
 
 defineExpose({
-  submitForm
+  submitForm,
 })
 
 onMounted(() => {

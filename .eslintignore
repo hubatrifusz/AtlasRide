@@ -1,0 +1,28 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build and output directories
+dist/
+build/
+out/
+.next/
+.nuxt/
+target/
+
+# Coverage and logs
+coverage/
+*.log
+.npm/
+.eslintcache
+
+# Static assets and minified files
+public/
+vendor/
+*.min.js
+
+# Config and hidden files
+.vscode/
+.idea/
+.git/
+.cache/
