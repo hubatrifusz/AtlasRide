@@ -21,43 +21,44 @@ export default withNuxt(
     ],
   },
   {
-  languageOptions: {
-    globals: {
-      ...globals.browser,
-      ...globals.node,
-      ref: 'readonly',
-    },
-    parser: vueParser,
-    parserOptions: {
-      ecmaVersion: 'latest',
-      parser: '@typescript-eslint/parser',
-      sourceType: 'module',
-    },
-  },
-  plugins: {
-    vue: vuePlugin,
-  },
-  rules: {
-    'no-console': 'warn',
-    'vue/attributes-order': [
-      'error',
-      {
-        order: [
-          'DEFINITION',
-          'LIST_RENDERING',
-          'CONDITIONALS',
-          'RENDER_MODIFIERS',
-          'GLOBAL',
-          ['UNIQUE', 'SLOT'],
-          'TWO_WAY_BINDING',
-          'OTHER_DIRECTIVES',
-          'OTHER_ATTR',
-          'EVENTS',
-          'CONTENT',
-        ],
-        alphabetical: false,
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ref: 'readonly',
       },
-    ],
-    'vue/multi-word-component-names': 'off',
+      parser: vueParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        parser: '@typescript-eslint/parser',
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      vue: vuePlugin,
+    },
+    rules: {
+      'no-console': 'warn',
+      'vue/attributes-order': [
+        'error',
+        {
+          order: [
+            'DEFINITION',
+            'LIST_RENDERING',
+            'CONDITIONALS',
+            'RENDER_MODIFIERS',
+            'GLOBAL',
+            ['UNIQUE', 'SLOT'],
+            'TWO_WAY_BINDING',
+            'OTHER_DIRECTIVES',
+            'OTHER_ATTR',
+            'EVENTS',
+            'CONTENT',
+          ],
+          alphabetical: false,
+        },
+      ],
+      'vue/multi-word-component-names': 'off',
+    },
   },
-}).append(eslintConfigPrettier)
+).append(eslintConfigPrettier)
