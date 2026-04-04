@@ -46,6 +46,7 @@
     "eslint-plugin-vue": "^10.4.0",
     "globals": "^17.4.0",
     "happy-dom": "^20.0.10",
+    "mongodb-memory-server": "^11.0.1",
     "prettier": "^3.8.1",
     "vitest": "^4.0.14",
     "vue-eslint-parser": "^10.2.0"
