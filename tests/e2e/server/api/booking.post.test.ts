@@ -42,4 +42,29 @@ describe('Booking POST tests', async () => {
     expect(count).toEqual(1)
     expect(response).toBeDefined()
   })
+
+  it('returns 400 if payload is missing', async () => {
+    try {
+      await $fetch('/api/booking', {
+        method: 'POST',
+        body: null,
+      })
+    } catch (error: any) {
+      expect(error.statusCode).toBe(400)
+      expect(error.statusMessage).toBe('Payload is missing')
+    }
+  })
+
+  it('returns 400 if payload is invalid', async () => {
+    try {
+      await $fetch('/api/booking', {
+        method: 'POST',
+        body: BOOKING_SCENARIOS.invalidEmailFormat,
+      })
+    } catch (error: any) {
+      expect(error.statusCode).toBe(400)
+      expect(error.statusMessage).toBe('Validation Failed')
+      expect(error.data).toBeDefined()
+    }
+  })
 })
